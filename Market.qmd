@@ -67,6 +67,9 @@ import pandas as pd
 from datetime import datetime
 import os
 import openpyxl
+import re
+from collections import Counter
+import jieba
 
 # 用户配置区域
 SERPAPI_KEY = "84c798a8d45d1e7cae0b18df778ac06bf2c6169f0249e40756aea0b9d6cd4749"  
@@ -130,6 +133,7 @@ def extract_search_results(results, keyword):
 ```
 
 ```{python}
+#| eval: false
 def search_keyword_with_pagination(keyword, api_key, total_results=20):
     all_results = []
     results_per_page = 10
@@ -261,6 +265,7 @@ print(f"文件已保存至：{output_file}")
 ## **1.3 Data Clean**
 
 ```{python}
+#| eval: false
 # 输入输出路径
 input_file = "/Applications/SMU/Great Eastern/Personal Project/RFM Project/Dataset/search_results_with_content.xlsx"
 output_file = "/Applications/SMU/Great Eastern/Personal Project/RFM Project/Dataset/search_results_cleaned.xlsx"
@@ -317,6 +322,7 @@ print(df.isna().sum())
 ```
 
 ```{python}
+#| eval: false
 df_cleaned = df[~df["invalid"] & df["content"].notna()].copy()
 df_cleaned.to_excel("search_results_cleaned.xlsx", index=False)
 ```
@@ -326,9 +332,6 @@ df_cleaned.to_excel("search_results_cleaned.xlsx", index=False)
 The raw text contains punctuation, redundant whitespace, and occasionally malformed encoding. We apply basic cleaning to ensure the corpus is suitable for keyword extraction and topic modeling.
 
 ```{python}
-import re
-from collections import Counter
-import jieba
 
 # 1. 加载清洗后的文章数据
 df = pd.read_excel("Dataset/search_results_cleaned.xlsx")
@@ -359,10 +362,15 @@ for content in df["content"]:
 # 5. 词频统计
 word_freq = Counter(words)
 df_freq = pd.DataFrame(word_freq.most_common(100), columns=["Word", "Frequency"])
+```
 
+```{python}
+#| eval: false
 # 6. 保存到文件
 df_freq.to_excel("Dataset/word_frequency_cleaned_with_stopwords.xlsx", index=False)
+```
 
+```{python}
 # 7. 打印结果
 print(df_freq)
 ```
@@ -697,10 +705,48 @@ Through the combined use of structured flowchart thinking and real-world data co
 ### Why This Method Worked:
 By using a spider to extract public sentiment directly from platforms like Zhihu and Xueqiu, we bypassed the sampling bias of traditional surveys and captured more nuanced and emotionally honest reasons behind wealth relocation behavior.
 
-### Strategic Implications:
-- **For Wealth Advisors**: Focus messaging on intergenerational planning and offshore security.
-- **For Life Inc**: Develop advisory frameworks that align with education, legacy, and compliance-oriented strategies.
-- **For Survey Design**: The themes identified here form the foundation of more targeted and relevant survey questions in the next phase of this project.
+## Strategic Implications 
+
+### For Wealth Advisors
+Align advisory messaging with clients’ emotional priorities—especially **trust**, **family security**, and **intergenerational control**. Use insights from sentiment clustering to reframe conversations from “products” to “protecting legacy.”
+
+> **Example**:  
+> Replace “Let’s set up a trust to reduce tax” with  
+> “Let’s future-proof your family’s assets so your son can inherit them securely—no matter what happens in either country.”
+
+---
+
+### For Life Inc
+Build **theme-based planning kits** (e.g. Trust + Tax + Education) mapped to the four identified keyword communities. Invest in **bilingual onboarding**, **WeChat-style content formats**, and **cross-border collaboration frameworks** to serve Chinese HNWIs holistically.
+
+> **Example**:  
+> Develop a digital **“Singapore Welcome Pack”** with Mandarin guides on:  
+> - How to legally move funds  
+> - Trust structure overview  
+> - PR application tips  
+> Delivered via a mini-site or WeChat-compatible PDF deck.
+
+---
+
+### For Company Strategy
+Establish **modular advisory paths** for three core personas—**Forward Planner**, **Risk Avoider**, and **Legacy Seeker**. Each path should include tax-legal coordination, lifestyle concierge, and asset structuring guidance anchored in Singapore.
+
+> **Example**:  
+> Create a **“Legacy Seeker Pathway”**:  
+> - Intro session with bilingual legacy advisor  
+> - Local will & trust setup  
+> - Heir education roadmap (e.g. next-gen wealth workshops)
+
+---
+
+### For Survey & Research
+Refine **survey instruments** to probe **latent motivations** (e.g. fear of instability, desire for international lifestyle) and validate which **service combinations** resonate most. Use network clusters to shape both question content and option phrasing.
+
+> **Example**:  
+> Include a ranking question:  
+> “Which matters more to you in choosing a jurisdiction for your family’s assets?”  
+> (Options: Political stability / Education system / Inheritance clarity / Low tax burden)  
+> → Each option maps to a keyword community in your analysis.
 
 ---
 

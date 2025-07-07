@@ -1,0 +1,15 @@
+---
+title: "Wealth Management"
+author: "Zou Jiaxun"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: false
+  cache: false
+format:
+  html:
+    code-fold: true
+    code-summary: "Click to view code"
+jupyter: python3  
+---
