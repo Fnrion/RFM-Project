@@ -11,7 +11,6 @@ format:
   html:
     code-fold: true
     code-summary: "Click to view code"
-jupyter: python3  
 ---
 
 # 1 **Overview**
@@ -592,7 +591,7 @@ for word_list in keyword_sentences:
         co_occurrence[tuple(sorted(pair))] += 1
 ```
 
-```{python}
+```{python, results='hide'}
 import matplotlib.font_manager as fm
 for font in fm.findSystemFonts(fontpaths=None, fontext='ttf'):
     if 'PingFang' in font or 'Arial' in font or 'Hei' in font:
@@ -600,11 +599,32 @@ for font in fm.findSystemFonts(fontpaths=None, fontext='ttf'):
 ```
 
 ```{python}
+import pandas as pd
+
+# Make sure this exists already
+# co_occurrence = Counter({("word1", "word2"): freq, ...})
+
+# Build DataFrame from co_occurrence
+edges_df = pd.DataFrame(
+    [(w1, w2, freq) for (w1, w2), freq in co_occurrence.items() if freq >= 20],
+    columns=["from", "to", "value"]
+)
+
+# Save to current directory
+edges_df.to_csv("edges.csv", index=False)
+
+# Check result
+print(edges_df.head(10))
+```
+
+
+
+```{python}
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 import networkx as nx
 
-# 手动设置中文字体
+# 设置中文字体
 my_font = fm.FontProperties(fname="/System/Library/Fonts/STHeiti Medium.ttc")
 plt.rcParams['font.family'] = my_font.get_name()
 plt.rcParams['axes.unicode_minus'] = False
@@ -612,7 +632,7 @@ plt.rcParams['axes.unicode_minus'] = False
 # 构建图
 G = nx.Graph()
 for (w1, w2), freq in co_occurrence.items():
-    if freq >= 3:  # 设定共现阈值
+    if freq >= 20:  # 设定共现阈值
         G.add_edge(w1, w2, weight=freq)
 
 # 可视化绘图
@@ -628,6 +648,28 @@ plt.tight_layout()
 plt.show()
 ```
 
+
+```{r}
+library(visNetwork)
+library(dplyr)
+library(readr)
+
+# Load edge list
+edges <- read_csv("edges.csv")
+
+top_edges <- edges %>%
+  arrange(desc(value)) %>%
+  slice_head(n = 80)
+
+# Generate unique node list
+nodes <- data.frame(id = unique(c(edges$from, edges$to)))
+
+# Build interactive network
+visNetwork(nodes, top_edges, width = "800px", height = "500px") %>%
+  visEdges(smooth = FALSE) %>%
+  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %>%
+  visPhysics(solver = "forceAtlas2Based")
+```
 ::: callout-important
 ## Insights from Co-occurrence Keyword Network
 

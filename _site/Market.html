@@ -103,6 +103,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/vis-9.1.0/vis-network.min.css" rel="stylesheet">
+<script src="site_libs/vis-9.1.0/vis-network.min.js"></script>
+<script src="site_libs/visNetwork-binding-2.1.2/visNetwork.js"></script>
 
 
 </head>
@@ -286,7 +290,7 @@ Why choose spider instead of survey
 <section id="implementation-building-the-spider" class="level2">
 <h2 class="anchored" data-anchor-id="implementation-building-the-spider">Implementation: Building the Spider</h2>
 <p>We implemented a Python-based web crawler using the SerpAPI platform to scrape real-time search results. The following code initializes the necessary libraries and parameters used in the process.</p>
-<div id="42c2190e" class="cell" data-execution_count="1">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
@@ -311,7 +315,7 @@ Why choose spider instead of survey
 <section id="targeted-search-keywords" class="level2">
 <h2 class="anchored" data-anchor-id="targeted-search-keywords">Targeted Search Keywords</h2>
 <p>The keywords used by the crawler are carefully chosen to reflect real user concerns about wealth migration. These terms guide the spider to relevant discussions, articles, and posts.</p>
-<div id="42401e87" class="cell" data-execution_count="2">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>keywords <span class="op">=</span> [</span>
@@ -326,7 +330,7 @@ Why choose spider instead of survey
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="745cb988" class="cell" data-execution_count="3">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> serpapi_search(query, api_key, num<span class="op">=</span><span class="dv">20</span>, start<span class="op">=</span><span class="dv">0</span>):</span>
@@ -365,7 +369,7 @@ Why choose spider instead of survey
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> extracted_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="cd0718a6" class="cell" data-execution_count="4">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> search_keyword_with_pagination(keyword, api_key, total_results<span class="op">=</span><span class="dv">20</span>):</span>
@@ -387,7 +391,7 @@ Why choose spider instead of survey
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> all_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="743dd0f6" class="cell" data-execution_count="5">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
@@ -420,7 +424,7 @@ Why choose spider instead of survey
 <section id="data-collection-process" class="level2">
 <h2 class="anchored" data-anchor-id="data-collection-process">Data Collection Process</h2>
 <p>The crawler iterates through each keyword, sends queries to SerpAPI, extracts content (including titles, URLs, and full texts), and saves them into a structured format for further processing. This automation ensures scalability and coverage.</p>
-<div id="fa6a9b08" class="cell" data-execution_count="6">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> search_results:</span>
@@ -464,7 +468,7 @@ Why choose spider instead of survey
 <section id="data-transformation" class="level2">
 <h2 class="anchored" data-anchor-id="data-transformation">Data Transformation</h2>
 <p>Once raw JSON responses are collected, we convert them into a tabular format using <code>pandas</code>. This step prepares the dataset for text cleaning and analysis.</p>
-<div id="066abb27" class="cell" data-execution_count="7">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
@@ -503,7 +507,7 @@ Why choose spider instead of survey
 </section>
 <section id="data-clean" class="level2">
 <h2 class="anchored" data-anchor-id="data-clean"><strong>1.3 Data Clean</strong></h2>
-<div id="878cb8fd" class="cell" data-execution_count="8">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 输入输出路径</span></span>
@@ -541,63 +545,78 @@ Why choose spider instead of survey
 <span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"清洗完成，已保存为：</span><span class="sc">{</span>output_file<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="ae042966" class="cell" data-execution_count="9">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取 Excel 文件</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_excel(<span class="st">"search_results_cleaned.xlsx"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 查看行数和列数</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"行数 × 列数:"</span>, df.shape)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 查看列名和类型</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">列名与数据类型:"</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.dtypes)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 快速概览每列的前几行（结构 + 值）</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">样本预览:"</span>)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. 缺失值统计（NA 值）</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">缺失值统计:"</span>)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.isna().<span class="bu">sum</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"行数 × 列数:"</span>, df.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>行数 × 列数: (90, 6)
-
-列名与数据类型:
-keyword             object
+<pre><code>行数 × 列数: (90, 6)</code></pre>
+</div>
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 查看列名和类型</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">列名与数据类型:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+列名与数据类型:</code></pre>
+</div>
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.dtypes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>keyword             object
 title               object
 url                 object
 search_timestamp    object
 content             object
 invalid               bool
-dtype: object
+dtype: object</code></pre>
+</div>
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 快速概览每列的前几行（结构 + 值）</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">样本预览:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+样本预览:</code></pre>
+</div>
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>       keyword  ... invalid
+0  中国高净值人士 新加坡  ...   False
+1  中国高净值人士 新加坡  ...   False
+2  中国高净值人士 新加坡  ...   False
+3  中国高净值人士 新加坡  ...   False
+4  中国高净值人士 新加坡  ...   False
 
-样本预览:
-       keyword                           title  \
-0  中国高净值人士 新加坡          新加坡金融机制稳定吸引最多高净值人士考虑移居   
-1  中国高净值人士 新加坡          我国超高净值人群设立家族办公室现状分析与应对   
-2  中国高净值人士 新加坡  中国高净值人士在新加坡设立家族办公室和投资初创企业的 ...   
-3  中国高净值人士 新加坡        高净值人士为何纷纷选择新加坡？_移民_教育_工作   
-4  中国高净值人士 新加坡    聚焦家办| 亚洲超高净值人群增长或将推动家族办公室的发展   
-
-                                                 url     search_timestamp  \
-0  https://www.zaobao.com/finance/singapore/story...  2025-07-06 19:19:49   
-1  http://cel.cn/List/FullText?articleId=d37c148c...  2025-07-06 19:19:49   
-2  https://fargowealth.com/en/home/cfsj/cfsj_deta...  2025-07-06 19:19:49   
-3         https://www.sohu.com/a/843292362_121963266  2025-07-06 19:19:49   
-4  https://www.bloombergchina.com/blog/asias-ultr...  2025-07-06 19:19:49   
-
-                                             content  invalid  
-0  \n\n新加坡稳定的金融机制和区域联通性对全球富豪具有强大吸引力，是最多富豪首选的移居目的地...    False  
-1  肖京2024-07-08浏览量：1498\n我国超高净值人群设立家族办公室的需求是客观存在的...    False  
-2  中国高净值人士在新加坡设立家族办公室和投资初创企业的最新趋势\n五年前，梁信军因健康原因离开...    False  
-3  近年来，越来越多的国内企业家和高净值人士将目光投向新加坡，尤其是那些正在考虑移民或子女教育的...    False  
-4  本文由彭博行业研究高级分析师黄颖珊（Sharnie Wong）撰写，首发于彭博终端。\n瑞银...    False  
-
-缺失值统计:
-keyword             0
+[5 rows x 6 columns]</code></pre>
+</div>
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. 缺失值统计（NA 值）</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">缺失值统计:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+缺失值统计:</code></pre>
+</div>
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.isna().<span class="bu">sum</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>keyword             0
 title               0
 url                 0
 search_timestamp    0
@@ -606,63 +625,64 @@ invalid             0
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="741bac3f" class="cell" data-execution_count="10">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_cleaned <span class="op">=</span> df[<span class="op">~</span>df[<span class="st">"invalid"</span>] <span class="op">&amp;</span> df[<span class="st">"content"</span>].notna()].copy()</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_cleaned.to_excel(<span class="st">"search_results_cleaned.xlsx"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_cleaned <span class="op">=</span> df[<span class="op">~</span>df[<span class="st">"invalid"</span>] <span class="op">&amp;</span> df[<span class="st">"content"</span>].notna()].copy()</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df_cleaned.to_excel(<span class="st">"search_results_cleaned.xlsx"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="text-cleaning" class="level2">
 <h2 class="anchored" data-anchor-id="text-cleaning">Text Cleaning</h2>
 <p>The raw text contains punctuation, redundant whitespace, and occasionally malformed encoding. We apply basic cleaning to ensure the corpus is suitable for keyword extraction and topic modeling.</p>
-<div id="472a4ecf" class="cell" data-execution_count="11">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 加载清洗后的文章数据</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_excel(<span class="st">"Dataset/search_results_cleaned.xlsx"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"content"</span>].notna() <span class="op">&amp;</span> (df[<span class="st">"content"</span>].<span class="bu">str</span>.strip() <span class="op">!=</span> <span class="st">""</span>)]</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 读取停用词表</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"Dataset/cn_stopwords.txt"</span>, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    stopwords <span class="op">=</span> <span class="bu">set</span>([line.strip() <span class="cf">for</span> line <span class="kw">in</span> f])</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 清洗函数</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_text(s):</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> re.sub(<span class="vs">r'&lt;.*?&gt;'</span>, <span class="st">''</span>, s)  <span class="co"># HTML标签</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> re.sub(<span class="vs">r'[a-zA-Z]+'</span>, <span class="st">''</span>, s)  <span class="co"># 英文</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> re.sub(<span class="vs">r'[\d\-:/\.年月日\s]+'</span>, <span class="st">''</span>, s)  <span class="co"># 数字与日期</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> re.sub(<span class="vs">r'[\u0000-\u007F]+'</span>, <span class="st">''</span>, s)  <span class="co"># ASCII符号</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s.strip()</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. 分句 + 清洗 + 分词 + 去停用词</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> []</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> content <span class="kw">in</span> df[<span class="st">"content"</span>]:</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    sentences <span class="op">=</span> re.split(<span class="vs">r'[。！？]'</span>, content)</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> sentences:</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        s_clean <span class="op">=</span> clean_text(s)</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(s_clean) <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>            segs <span class="op">=</span> jieba.cut(s_clean)</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>            words <span class="op">+=</span> [w <span class="cf">for</span> w <span class="kw">in</span> segs <span class="cf">if</span> <span class="bu">len</span>(w) <span class="op">&gt;</span> <span class="dv">1</span> <span class="kw">and</span> w <span class="kw">not</span> <span class="kw">in</span> stopwords <span class="kw">and</span> re.match(<span class="vs">r'[\u4e00-\u9fff]+'</span>, w)]</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. 词频统计</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>word_freq <span class="op">=</span> Counter(words)</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>df_freq <span class="op">=</span> pd.DataFrame(word_freq.most_common(<span class="dv">100</span>), columns<span class="op">=</span>[<span class="st">"Word"</span>, <span class="st">"Frequency"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 加载清洗后的文章数据</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_excel(<span class="st">"Dataset/search_results_cleaned.xlsx"</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"content"</span>].notna() <span class="op">&amp;</span> (df[<span class="st">"content"</span>].<span class="bu">str</span>.strip() <span class="op">!=</span> <span class="st">""</span>)]</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 读取停用词表</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"Dataset/cn_stopwords.txt"</span>, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    stopwords <span class="op">=</span> <span class="bu">set</span>([line.strip() <span class="cf">for</span> line <span class="kw">in</span> f])</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 清洗函数</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_text(s):</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> re.sub(<span class="vs">r'&lt;.*?&gt;'</span>, <span class="st">''</span>, s)  <span class="co"># HTML标签</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> re.sub(<span class="vs">r'[a-zA-Z]+'</span>, <span class="st">''</span>, s)  <span class="co"># 英文</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> re.sub(<span class="vs">r'[\d\-:/\.年月日\s]+'</span>, <span class="st">''</span>, s)  <span class="co"># 数字与日期</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> re.sub(<span class="vs">r'[\u0000-\u007F]+'</span>, <span class="st">''</span>, s)  <span class="co"># ASCII符号</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s.strip()</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. 分句 + 清洗 + 分词 + 去停用词</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> []</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> content <span class="kw">in</span> df[<span class="st">"content"</span>]:</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    sentences <span class="op">=</span> re.split(<span class="vs">r'[。！？]'</span>, content)</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> sentences:</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>        s_clean <span class="op">=</span> clean_text(s)</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(s_clean) <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>            segs <span class="op">=</span> jieba.cut(s_clean)</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>            words <span class="op">+=</span> [w <span class="cf">for</span> w <span class="kw">in</span> segs <span class="cf">if</span> <span class="bu">len</span>(w) <span class="op">&gt;</span> <span class="dv">1</span> <span class="kw">and</span> w <span class="kw">not</span> <span class="kw">in</span> stopwords <span class="kw">and</span> re.match(<span class="vs">r'[\u4e00-\u9fff]+'</span>, w)]</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. 词频统计</span></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>word_freq <span class="op">=</span> Counter(words)</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>df_freq <span class="op">=</span> pd.DataFrame(word_freq.most_common(<span class="dv">100</span>), columns<span class="op">=</span>[<span class="st">"Word"</span>, <span class="st">"Frequency"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="46d4374a" class="cell" data-execution_count="12">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. 保存到文件</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df_freq.to_excel(<span class="st">"Dataset/word_frequency_cleaned_with_stopwords.xlsx"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. 保存到文件</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>df_freq.to_excel(<span class="st">"Dataset/word_frequency_cleaned_with_stopwords.xlsx"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="d1916b08" class="cell" data-execution_count="13">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. 打印结果</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_freq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. 打印结果</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_freq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Word  Frequency
@@ -695,39 +715,45 @@ dtype: int64</code></pre>
 <section id="visualizing-high-frequency-terms" class="level2">
 <h2 class="anchored" data-anchor-id="visualizing-high-frequency-terms">Visualizing High-Frequency Terms</h2>
 <p>The following word cloud ord highlights the most common terms across all retrieved content, offering a visual snapshot of what matters most to the audience.</p>
-<div id="5c8814fc" class="cell" data-execution_count="14">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> wordcloud <span class="im">import</span> WordCloud</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 加载词频数据</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>df_freq <span class="op">=</span> pd.read_excel(<span class="st">"Dataset/word_frequency_cleaned_with_stopwords.xlsx"</span>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 转换为字典格式</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>freq_dict <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(df_freq[<span class="st">"Word"</span>], df_freq[<span class="st">"Frequency"</span>]))</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 创建词云对象</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>wc <span class="op">=</span> WordCloud(</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    font_path<span class="op">=</span><span class="st">"/System/Library/Fonts/STHeiti Medium.ttc"</span>,  <span class="co"># 替换为你本地支持中文的字体路径</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    background_color<span class="op">=</span><span class="st">"white"</span>,</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">1000</span>,</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">700</span>,</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    max_words<span class="op">=</span><span class="dv">200</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>).generate_from_frequencies(freq_dict)</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. 可视化词云</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>plt.imshow(wc, interpolation<span class="op">=</span><span class="st">"bilinear"</span>)</span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">"off"</span>)</span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"WordCloud"</span>, fontsize<span class="op">=</span><span class="dv">18</span>)</span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(top<span class="op">=</span><span class="fl">0.85</span>) </span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> wordcloud <span class="im">import</span> WordCloud</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 加载词频数据</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>df_freq <span class="op">=</span> pd.read_excel(<span class="st">"Dataset/word_frequency_cleaned_with_stopwords.xlsx"</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 转换为字典格式</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>freq_dict <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(df_freq[<span class="st">"Word"</span>], df_freq[<span class="st">"Frequency"</span>]))</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 创建词云对象</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>wc <span class="op">=</span> WordCloud(</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    font_path<span class="op">=</span><span class="st">"/System/Library/Fonts/STHeiti Medium.ttc"</span>,  <span class="co"># 替换为你本地支持中文的字体路径</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    background_color<span class="op">=</span><span class="st">"white"</span>,</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">700</span>,</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>    max_words<span class="op">=</span><span class="dv">200</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>).generate_from_frequencies(freq_dict)</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. 可视化词云</span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>plt.imshow(wc, interpolation<span class="op">=</span><span class="st">"bilinear"</span>)</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">"off"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display">
+<div class="cell-output cell-output-stdout">
+<pre><code>(np.float64(-0.5), np.float64(999.5), np.float64(699.5), np.float64(-0.5))</code></pre>
+</div>
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"WordCloud"</span>, fontsize<span class="op">=</span><span class="dv">18</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(top<span class="op">=</span><span class="fl">0.85</span>) </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Market_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="Market_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -753,45 +779,45 @@ Insights from the Word Cloud
 </section>
 <section id="sentiment-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="sentiment-analysis"><strong>2.2 Sentiment Analysis</strong></h2>
-<div id="4a00549c" class="cell" data-execution_count="15">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> snownlp <span class="im">import</span> SnowNLP</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取已清洗的数据</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_excel(<span class="st">"Dataset/search_results_cleaned.xlsx"</span>)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 过滤掉无正文</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"content"</span>].notna() <span class="op">&amp;</span> (df[<span class="st">"content"</span>].<span class="bu">str</span>.<span class="bu">len</span>() <span class="op">&gt;</span> <span class="dv">30</span>)].copy()</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 情感分析函数（返回值在 0～1 之间，1 越积极）</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_sentiment(text):</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> SnowNLP(text).sentiments</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加情感评分列</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"sentiment_score"</span>] <span class="op">=</span> df[<span class="st">"content"</span>].<span class="bu">apply</span>(get_sentiment)</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 分类标签：大于 0.6 为正面，小于 0.4 为负面，其余为中性</span></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify(score):</span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> score <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Unknown"</span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> score <span class="op">&gt;</span> <span class="fl">0.6</span>:</span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Positive"</span></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> score <span class="op">&lt;</span> <span class="fl">0.4</span>:</span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Negative"</span></span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Neutral"</span></span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"sentiment_label"</span>] <span class="op">=</span> df[<span class="st">"sentiment_score"</span>].<span class="bu">apply</span>(classify)</span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存结果</span></span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>df.to_excel(<span class="st">"Dataset/search_results_sentiment.xlsx"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看统计</span></span>
-<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"sentiment_label"</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> snownlp <span class="im">import</span> SnowNLP</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取已清洗的数据</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_excel(<span class="st">"Dataset/search_results_cleaned.xlsx"</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 过滤掉无正文</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"content"</span>].notna() <span class="op">&amp;</span> (df[<span class="st">"content"</span>].<span class="bu">str</span>.<span class="bu">len</span>() <span class="op">&gt;</span> <span class="dv">30</span>)].copy()</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 情感分析函数（返回值在 0～1 之间，1 越积极）</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_sentiment(text):</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> SnowNLP(text).sentiments</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加情感评分列</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"sentiment_score"</span>] <span class="op">=</span> df[<span class="st">"content"</span>].<span class="bu">apply</span>(get_sentiment)</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 分类标签：大于 0.6 为正面，小于 0.4 为负面，其余为中性</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify(score):</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> score <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Unknown"</span></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> score <span class="op">&gt;</span> <span class="fl">0.6</span>:</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Positive"</span></span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> score <span class="op">&lt;</span> <span class="fl">0.4</span>:</span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Negative"</span></span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Neutral"</span></span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"sentiment_label"</span>] <span class="op">=</span> df[<span class="st">"sentiment_score"</span>].<span class="bu">apply</span>(classify)</span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存结果</span></span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>df.to_excel(<span class="st">"Dataset/search_results_sentiment.xlsx"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看统计</span></span>
+<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"sentiment_label"</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>sentiment_label
@@ -800,52 +826,57 @@ Negative     5
 Name: count, dtype: int64</code></pre>
 </div>
 </div>
-<div id="81869b0d" class="cell" data-execution_count="16">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Count sentiment</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>sentiment_counts <span class="op">=</span> df[<span class="st">"sentiment_label"</span>].value_counts()</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Set labels and colors</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> sentiment_counts.index.tolist()</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#4CAF50'</span> <span class="cf">if</span> label <span class="op">==</span> <span class="st">'Positive'</span> <span class="cf">else</span> <span class="st">'#F44336'</span> <span class="cf">for</span> label <span class="kw">in</span> labels]  </span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Define explode to slightly offset each slice</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>explode <span class="op">=</span> [<span class="fl">0.05</span>] <span class="op">*</span> <span class="bu">len</span>(labels)</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">7</span>), facecolor<span class="op">=</span><span class="st">'white'</span>)</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>wedges, texts, autotexts <span class="op">=</span> ax.pie(</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    sentiment_counts,</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span>labels,</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>,</span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    startangle<span class="op">=</span><span class="dv">140</span>,</span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    colors<span class="op">=</span>colors,</span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    explode<span class="op">=</span>explode,</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    wedgeprops<span class="op">=</span>{<span class="st">'edgecolor'</span>: <span class="st">'white'</span>, <span class="st">'linewidth'</span>: <span class="dv">2</span>},</span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    textprops<span class="op">=</span>{<span class="st">'fontsize'</span>: <span class="dv">13</span>}</span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Labels and percentages</span></span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> text <span class="kw">in</span> autotexts:</span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    text.set_color(<span class="st">'white'</span>)</span>
-<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    text.set_fontweight(<span class="st">'bold'</span>)</span>
-<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Add title with padding</span></span>
-<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Sentiment Composition"</span>, fontsize<span class="op">=</span><span class="dv">18</span>, weight<span class="op">=</span><span class="st">'bold'</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Equal aspect ratio ensures pie is circular</span></span>
-<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">'equal'</span>)</span>
-<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Count sentiment</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>sentiment_counts <span class="op">=</span> df[<span class="st">"sentiment_label"</span>].value_counts()</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Set labels and colors</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> sentiment_counts.index.tolist()</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#4CAF50'</span> <span class="cf">if</span> label <span class="op">==</span> <span class="st">'Positive'</span> <span class="cf">else</span> <span class="st">'#F44336'</span> <span class="cf">for</span> label <span class="kw">in</span> labels]  </span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Define explode to slightly offset each slice</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>explode <span class="op">=</span> [<span class="fl">0.05</span>] <span class="op">*</span> <span class="bu">len</span>(labels)</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">7</span>), facecolor<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>wedges, texts, autotexts <span class="op">=</span> ax.pie(</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>    sentiment_counts,</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span>labels,</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>    autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>,</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>    startangle<span class="op">=</span><span class="dv">140</span>,</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>    colors<span class="op">=</span>colors,</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>    explode<span class="op">=</span>explode,</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>    wedgeprops<span class="op">=</span>{<span class="st">'edgecolor'</span>: <span class="st">'white'</span>, <span class="st">'linewidth'</span>: <span class="dv">2</span>},</span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>    textprops<span class="op">=</span>{<span class="st">'fontsize'</span>: <span class="dv">13</span>}</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Labels and percentages</span></span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> text <span class="kw">in</span> autotexts:</span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>    text.set_color(<span class="st">'white'</span>)</span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>    text.set_fontweight(<span class="st">'bold'</span>)</span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Add title with padding</span></span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Sentiment Composition"</span>, fontsize<span class="op">=</span><span class="dv">18</span>, weight<span class="op">=</span><span class="st">'bold'</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Equal aspect ratio ensures pie is circular</span></span>
+<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">'equal'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display">
+<div class="cell-output cell-output-stdout">
+<pre><code>(np.float64(-1.0678605883871746), np.float64(1.132139119268791), np.float64(-1.1383021878878103), np.float64(1.0616974680034947))</code></pre>
+</div>
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Market_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="Market_files/figure-html/unnamed-chunk-16-3.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -869,36 +900,19 @@ Insights from Sentiment Analysis
 <p><strong>Conclusion</strong>: These findings suggest that while Singapore is generally viewed favorably, there remains a need to <strong>address misconceptions</strong> and <strong>reduce friction in communication</strong> when engaging with HNW prospects.</p>
 </div>
 </div>
-<div id="c987366c" class="cell" data-execution_count="17">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> <span class="st">'Arial Unicode MS'</span>  </span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 分组：统计每个 keyword 下的正负面数量</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>sentiment_by_keyword <span class="op">=</span> df.groupby([<span class="st">'keyword'</span>, <span class="st">'sentiment_label'</span>]).size().unstack(fill_value<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 打印检查</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sentiment_by_keyword)</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图：堆叠柱状图</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>sentiment_by_keyword.plot(kind<span class="op">=</span><span class="st">'bar'</span>, stacked<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>), color<span class="op">=</span>[<span class="st">"#1f77b4"</span>, <span class="st">"#ff7f0e"</span>])  </span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置标题和轴标签</span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"关键词情感构成"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"关键词"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"文章数量"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 旋转 x 轴文字防止重叠</span></span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>)</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 自动布局</span></span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 显示图像</span></span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> <span class="st">'Arial Unicode MS'</span>  </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 分组：统计每个 keyword 下的正负面数量</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>sentiment_by_keyword <span class="op">=</span> df.groupby([<span class="st">'keyword'</span>, <span class="st">'sentiment_label'</span>]).size().unstack(fill_value<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 打印检查</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sentiment_by_keyword)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>sentiment_label   Negative  Positive
@@ -912,10 +926,34 @@ keyword
 中国高净值客户 离岸账户             0        15
 新加坡 CRS 避税               1        11</code></pre>
 </div>
-<div class="cell-output cell-output-display">
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图：堆叠柱状图</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>sentiment_by_keyword.plot(kind<span class="op">=</span><span class="st">'bar'</span>, stacked<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>), color<span class="op">=</span>[<span class="st">"#1f77b4"</span>, <span class="st">"#ff7f0e"</span>])  </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置标题和轴标签</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"关键词情感构成"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"关键词"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"文章数量"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 旋转 x 轴文字防止重叠</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(array([0, 1, 2, 3, 4, 5, 6, 7]), [Text(0, 0, '中国 家族信托 新加坡'), Text(1, 0, '中国富人 资产配置 新加坡'), Text(2, 0, '中国富豪 为什么移民新加坡'), Text(3, 0, '中国移民新加坡 财富管理'), Text(4, 0, '中国高净值人士 子女教育 新加坡'), Text(5, 0, '中国高净值人士 新加坡'), Text(6, 0, '中国高净值客户 离岸账户'), Text(7, 0, '新加坡 CRS 避税')])</code></pre>
+</div>
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 自动布局</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 显示图像</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Market_files/figure-html/cell-18-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="Market_files/figure-html/unnamed-chunk-17-5.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -941,102 +979,157 @@ Next Step: Deep Dive into Negative Sentiments
 </section>
 <section id="network-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="network-analysis"><strong>2.3 Network Analysis</strong></h2>
-<div id="92302b53" class="cell" data-execution_count="18">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 用于存储每句话的关键词</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>keyword_sentences <span class="op">=</span> []</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> content <span class="kw">in</span> df[<span class="st">"content"</span>]:</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    sentences <span class="op">=</span> re.split(<span class="vs">r'[。！？]'</span>, content)</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> sentences:</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>        s_clean <span class="op">=</span> clean_text(s)</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(s_clean) <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>            segs <span class="op">=</span> jieba.cut(s_clean)</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>            word_list <span class="op">=</span> [w <span class="cf">for</span> w <span class="kw">in</span> segs <span class="cf">if</span> <span class="bu">len</span>(w) <span class="op">&gt;</span> <span class="dv">1</span> <span class="kw">and</span> w <span class="kw">not</span> <span class="kw">in</span> stopwords <span class="kw">and</span> re.match(<span class="vs">r'[\u4e00-\u9fff]+'</span>, w)]</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>            keyword_sentences.append(word_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 用于存储每句话的关键词</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>keyword_sentences <span class="op">=</span> []</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> content <span class="kw">in</span> df[<span class="st">"content"</span>]:</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    sentences <span class="op">=</span> re.split(<span class="vs">r'[。！？]'</span>, content)</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> sentences:</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>        s_clean <span class="op">=</span> clean_text(s)</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(s_clean) <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>            segs <span class="op">=</span> jieba.cut(s_clean)</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>            word_list <span class="op">=</span> [w <span class="cf">for</span> w <span class="kw">in</span> segs <span class="cf">if</span> <span class="bu">len</span>(w) <span class="op">&gt;</span> <span class="dv">1</span> <span class="kw">and</span> w <span class="kw">not</span> <span class="kw">in</span> stopwords <span class="kw">and</span> re.match(<span class="vs">r'[\u4e00-\u9fff]+'</span>, w)]</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>            keyword_sentences.append(word_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="a85ed9d1" class="cell" data-execution_count="19">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>top_100_words <span class="op">=</span> <span class="bu">set</span>(df_freq[<span class="st">"Word"</span>])</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>co_occurrence <span class="op">=</span> Counter()</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 只统计 top100 词之间的共现</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word_list <span class="kw">in</span> keyword_sentences:</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    words_in_top100 <span class="op">=</span> [w <span class="cf">for</span> w <span class="kw">in</span> word_list <span class="cf">if</span> w <span class="kw">in</span> top_100_words]</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> pair <span class="kw">in</span> combinations(<span class="bu">set</span>(words_in_top100), <span class="dv">2</span>):  <span class="co"># set 去重</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        co_occurrence[<span class="bu">tuple</span>(<span class="bu">sorted</span>(pair))] <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>top_100_words <span class="op">=</span> <span class="bu">set</span>(df_freq[<span class="st">"Word"</span>])</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>co_occurrence <span class="op">=</span> Counter()</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 只统计 top100 词之间的共现</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word_list <span class="kw">in</span> keyword_sentences:</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    words_in_top100 <span class="op">=</span> [w <span class="cf">for</span> w <span class="kw">in</span> word_list <span class="cf">if</span> w <span class="kw">in</span> top_100_words]</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> pair <span class="kw">in</span> combinations(<span class="bu">set</span>(words_in_top100), <span class="dv">2</span>):  <span class="co"># set 去重</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>        co_occurrence[<span class="bu">tuple</span>(<span class="bu">sorted</span>(pair))] <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="709902e5" class="cell" data-execution_count="20">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.font_manager <span class="im">as</span> fm</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> font <span class="kw">in</span> fm.findSystemFonts(fontpaths<span class="op">=</span><span class="va">None</span>, fontext<span class="op">=</span><span class="st">'ttf'</span>):</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'PingFang'</span> <span class="kw">in</span> font <span class="kw">or</span> <span class="st">'Arial'</span> <span class="kw">in</span> font <span class="kw">or</span> <span class="st">'Hei'</span> <span class="kw">in</span> font:</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(font)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.font_manager <span class="im">as</span> fm</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> font <span class="kw">in</span> fm.findSystemFonts(fontpaths<span class="op">=</span><span class="va">None</span>, fontext<span class="op">=</span><span class="st">'ttf'</span>):</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'PingFang'</span> <span class="kw">in</span> font <span class="kw">or</span> <span class="st">'Arial'</span> <span class="kw">in</span> font <span class="kw">or</span> <span class="st">'Hei'</span> <span class="kw">in</span> font:</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(font)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure this exists already</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># co_occurrence = Counter({("word1", "word2"): freq, ...})</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Build DataFrame from co_occurrence</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>edges_df <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    [(w1, w2, freq) <span class="cf">for</span> (w1, w2), freq <span class="kw">in</span> co_occurrence.items() <span class="cf">if</span> freq <span class="op">&gt;=</span> <span class="dv">20</span>],</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>[<span class="st">"from"</span>, <span class="st">"to"</span>, <span class="st">"value"</span>]</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Save to current directory</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>edges_df.to_csv(<span class="st">"edges.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Check result</span></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(edges_df.head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>/System/Library/Fonts/Supplemental/Arial Rounded Bold.ttf
-/System/Library/Fonts/Supplemental/Arial Narrow.ttf
-/System/Library/Fonts/ArialHB.ttc
-/System/Library/Fonts/Supplemental/Arial.ttf
-/System/Library/Fonts/Supplemental/Arial Unicode.ttf
-/System/Library/Fonts/Supplemental/Arial Italic.ttf
-/System/Library/Fonts/Supplemental/Arial Bold Italic.ttf
-/System/Library/Fonts/Supplemental/Arial Narrow Bold.ttf
-/Library/Fonts/Arial Unicode.ttf
-/System/Library/Fonts/Supplemental/Arial Bold.ttf
-/System/Library/Fonts/STHeiti Medium.ttc
-/System/Library/Fonts/PingFang.ttc
-/System/Library/Fonts/STHeiti Light.ttc
-/System/Library/Fonts/Supplemental/Arial Black.ttf
-/System/Library/Fonts/Supplemental/Arial Narrow Bold Italic.ttf
-/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf</code></pre>
+<pre><code>  from   to  value
+0   全球   金融     44
+1   全球  新加坡    181
+2  新加坡   金融    100
+3   净值  新加坡    113
+4   净值   私人     31
+5   净值   地区     38
+6   净值   国家     32
+7   净值   财富    123
+8   人士   净值    146
+9   净值   报告     50</code></pre>
 </div>
 </div>
-<div id="67c8e5c3" class="cell" data-execution_count="21">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.font_manager <span class="im">as</span> fm</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 手动设置中文字体</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>my_font <span class="op">=</span> fm.FontProperties(fname<span class="op">=</span><span class="st">"/System/Library/Fonts/STHeiti Medium.ttc"</span>)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> my_font.get_name()</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 构建图</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (w1, w2), freq <span class="kw">in</span> co_occurrence.items():</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> freq <span class="op">&gt;=</span> <span class="dv">3</span>:  <span class="co"># 设定共现阈值</span></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>        G.add_edge(w1, w2, weight<span class="op">=</span>freq)</span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 可视化绘图</span></span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">10</span>))</span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> nx.spring_layout(G, k<span class="op">=</span><span class="fl">0.5</span>, seed<span class="op">=</span><span class="dv">42</span>)  <span class="co"># 节点布局</span></span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_nodes(G, pos, node_size<span class="op">=</span><span class="dv">500</span>, node_color<span class="op">=</span><span class="st">'lightblue'</span>)</span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_edges(G, pos, width<span class="op">=</span>[d[<span class="st">'weight'</span>] <span class="op">*</span> <span class="fl">0.3</span> <span class="cf">for</span> _, _, d <span class="kw">in</span> G.edges(data<span class="op">=</span><span class="va">True</span>)], alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_labels(G, pos, font_size<span class="op">=</span><span class="dv">10</span>, font_family<span class="op">=</span>my_font.get_name())</span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Top 100 中文关键词共现网络"</span>, fontproperties<span class="op">=</span>my_font)</span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">"off"</span>)</span>
-<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.font_manager <span class="im">as</span> fm</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置中文字体</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>my_font <span class="op">=</span> fm.FontProperties(fname<span class="op">=</span><span class="st">"/System/Library/Fonts/STHeiti Medium.ttc"</span>)</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> my_font.get_name()</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 构建图</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (w1, w2), freq <span class="kw">in</span> co_occurrence.items():</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> freq <span class="op">&gt;=</span> <span class="dv">20</span>:  <span class="co"># 设定共现阈值</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>        G.add_edge(w1, w2, weight<span class="op">=</span>freq)</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 可视化绘图</span></span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">10</span>))</span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> nx.spring_layout(G, k<span class="op">=</span><span class="fl">0.5</span>, seed<span class="op">=</span><span class="dv">42</span>)  <span class="co"># 节点布局</span></span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_nodes(G, pos, node_size<span class="op">=</span><span class="dv">500</span>, node_color<span class="op">=</span><span class="st">'lightblue'</span>)</span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_edges(G, pos, width<span class="op">=</span>[d[<span class="st">'weight'</span>] <span class="op">*</span> <span class="fl">0.3</span> <span class="cf">for</span> _, _, d <span class="kw">in</span> G.edges(data<span class="op">=</span><span class="va">True</span>)], alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_labels(G, pos, font_size<span class="op">=</span><span class="dv">10</span>, font_family<span class="op">=</span>my_font.get_name())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display">
+<div class="cell-output cell-output-stdout">
+<pre><code>{'全球': Text(-0.0842880072427534, 0.17642179336863892, '全球'), '金融': Text(0.05624833749245123, 0.3834226212036606, '金融'), '新加坡': Text(-0.08497404385074436, 0.06066347567584077, '新加坡'), '净值': Text(-0.12316501575028638, 0.06758314042122512, '净值'), '私人': Text(0.4291529391561576, 0.09228889945579109, '私人'), '地区': Text(0.11671761858545471, 0.8328215789655264, '地区'), '国家': Text(-0.09862470217883511, 0.2914083669039099, '国家'), '财富': Text(-0.07332153419506195, -0.01595506949165427, '财富'), '人士': Text(-0.41097066165841434, -0.040305407660239934, '人士'), '报告': Text(-0.7082110990347876, -0.02135728351719375, '报告'), '银行': Text(0.2351141971809941, 0.18242880770496608, '银行'), '资产': Text(0.00576863003990864, -0.07697548958583662, '资产'), '专业': Text(0.34092551958244494, -0.19892352958019727, '专业'), '企业': Text(-0.002426323805060224, 0.24678082221412945, '企业'), '提供': Text(0.2371455838795942, -0.018858103700529184, '提供'), '管理': Text(0.06070441460651799, -0.008835303128911733, '管理'), '环境': Text(-0.7695945468510266, 0.5429038827187079, '环境'), '税收': Text(0.06353293504386714, 0.3274815695170288, '税收'), '家族': Text(-0.0057276376772351185, -0.12619865024682142, '家族'), '办公室': Text(-0.1251832843851663, -0.12033500158408887, '办公室'), '香港': Text(4.313755083802968e-05, 0.03707249675843364, '香港'), '中国': Text(-0.08808825871384614, 0.12436407168880675, '中国'), '计划': Text(-0.5740573364757406, 0.2251158620430338, '计划'), '投资者': Text(-0.6392947207291862, 0.6999131809489467, '投资者'), '资金': Text(0.6321690421302495, 0.06619355526512917, '资金'), '规划': Text(0.3473221115038492, -0.29454185876101524, '规划'), '业务': Text(0.37589990584531413, 0.15179368863324727, '业务'), '方面': Text(-0.3519942058119079, 0.4273625524795799, '方面'), '重要': Text(-0.7319040479750449, 0.18353108060295853, '重要'), '个人': Text(-0.1400673646313397, 0.5727411073020163, '个人'), '拥有': Text(-0.2947749563408743, -0.316267112228499, '拥有'), '国际': Text(0.3876040331993376, 0.009546230064741194, '国际'), '市场': Text(0.16600808190219146, 0.451079027470913, '市场'), '机构': Text(0.3439712165298118, 0.3154922163858356, '机构'), '进行': Text(-0.15110657514162265, 0.2439257401535137, '进行'), '美国': Text(-0.5211834018571875, -0.11091465718174824, '美国'), '投资': Text(-0.03631047914931302, 0.059722957353771214, '投资'), '主要': Text(-0.2600882041806166, -0.09985431289464497, '主要'), '公司': Text(-0.10168993551534859, -0.07074362524264605, '公司'), '法律': Text(0.024728050037416426, -0.4706470161573844, '法律'), '服务': Text(0.18726183004421276, -0.06573570421565414, '服务'), '设立': Text(-0.047012457921708814, -0.24440672827461743, '设立'), '人群': Text(-0.27000540411795776, 0.05107034394187539, '人群'), '需求': Text(-0.10433921035159009, -0.40731132489416866, '需求'), '需要': Text(0.41056301944516166, 0.2796734626476729, '需要'), '海外': Text(0.13115080880618674, -0.1136773771268126, '海外'), '国内': Text(0.3272805410404342, 0.8525681841187821, '国内'), '成为': Text(-0.5013858040469009, 0.09960538158625813, '成为'), '发展': Text(-0.1796399460966992, 0.43904544099784026, '发展'), '行业': Text(0.19329503501919007, -0.7149024341774384, '行业'), '监管': Text(-0.19502236118649272, 0.841900498270216, '监管'), '目前': Text(-0.44985595407173506, -0.6355625619793502, '目前'), '家庭': Text(0.15716853276100706, -0.31823899961044017, '家庭'), '经济': Text(-0.4274792594277936, 0.45762726870229814, '经济'), '超过': Text(-0.75314498246751, 0.08385544981063961, '超过'), '信托': Text(0.17438184102589196, -0.2604210678534205, '信托'), '方式': Text(0.32786644458760134, 0.6391600104236654, '方式'), '选择': Text(-0.35392904415241305, 0.0264699172301304, '选择'), '境外': Text(-0.15596734345267008, -0.6078661216596724, '境外'), '家办': Text(-0.23220868750146498, -0.3959944125101126, '家办'), '包括': Text(0.31728638180474367, 0.09771096931203982, '包括'), '风险': Text(-0.41412911015696996, -0.44793905412447294, '风险'), '影响': Text(-0.5425464095074639, -0.7937098929994423, '影响'), '政策': Text(0.1887002437963138, -0.45248622580216197, '政策'), '相关': Text(-0.40948413865850486, 0.2840612000872398, '相关'), '身份': Text(0.5700620656984552, -0.1667525779370259, '身份'), '方案': Text(0.49110005604537726, -0.3812731093269936, '方案'), '资本': Text(0.45532395626189387, 0.6246757225326001, '资本'), '税务': Text(0.12470219631438775, 0.1465387749062178, '税务'), '增长': Text(-0.17867371712758728, 0.6594538092290321, '增长'), '数量': Text(0.5371770427501534, 0.26914455123166303, '数量'), '税率': Text(0.5748524450367416, 0.5015335546433848, '税率'), '要求': Text(-0.3059954188274524, 0.2710337187761868, '要求'), '居民': Text(0.25882546076038454, 0.4467471313513187, '居民'), '可能': Text(-0.28943286268369683, -0.8260982192957885, '可能'), '配置': Text(0.04369572499136623, -0.30813747426779975, '配置'), '信息': Text(0.05175172454756748, 0.5332683129908465, '信息'), '收入': Text(0.5835836758859314, 0.6290108766515359, '收入'), '一个': Text(-0.2934577047704411, -0.22225815557478162, '一个'), '申请': Text(-0.6286813953176749, -0.29106930093675104, '申请'), '基金': Text(-0.3777673753180892, -0.1463425195879327, '基金'), '移民': Text(0.06330153953516733, -0.23070493240108714, '移民'), '没有': Text(-0.7378798813537407, -0.7960047445460697, '没有'), '教育': Text(-0.4715785531312976, -0.30605002648668866, '教育'), '未来': Text(-0.6710754106250819, 0.37742991831070205, '未来'), '顾问': Text(0.3598440517824097, -0.6121235572332767, '顾问'), '持有': Text(-0.038210676322923215, -0.721297810673328, '持有'), '客户': Text(0.22721713395167756, -0.11627888701891935, '客户'), '规定': Text(0.15623646583349513, -1.0, '规定'), '产品': Text(0.8338880136204145, 0.058107034118190536, '产品'), '环球': Text(0.46001929965593563, -0.515134461143898, '环球'), '离岸': Text(0.12152202057239804, 0.2080647115443526, '离岸'), '金融机构': Text(0.04457603324662054, 0.8386621312441607, '金融机构'), '账户': Text(0.1517331728159757, 0.3544471719005083, '账户'), '交换': Text(0.07799099307208715, 0.7009159593954648, '交换'), '财产': Text(0.5741571575144769, -0.6929282607502738, '财产'), '委托人': Text(0.4848969247043041, -0.7817519740963982, '委托人'), '受托人': Text(0.8557837910978633, -0.891819979082537, '受托人'), '受益人': Text(0.7590085396770473, -0.6206920254723107, '受益人'), '个人简介': Text(0.306689533778002, -0.46815788923412965, '个人简介')}</code></pre>
+</div>
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Top 100 中文关键词共现网络"</span>, fontproperties<span class="op">=</span>my_font)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">"off"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(np.float64(-0.9402592723356601), np.float64(1.0264485165824968), np.float64(-1.194519659332472), np.float64(1.0470878434512543))</code></pre>
+</div>
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Market_files/figure-html/cell-22-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="Market_files/figure-html/unnamed-chunk-22-7.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(visNetwork)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Load edge list</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>edges <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"edges.csv"</span>)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>top_edges <span class="ot">&lt;-</span> edges <span class="sc">%&gt;%</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(value)) <span class="sc">%&gt;%</span></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">80</span>)</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate unique node list</span></span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>nodes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="fu">unique</span>(<span class="fu">c</span>(edges<span class="sc">$</span>from, edges<span class="sc">$</span>to)))</span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Build interactive network</span></span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a><span class="fu">visNetwork</span>(nodes, top_edges, <span class="at">width =</span> <span class="st">"800px"</span>, <span class="at">height =</span> <span class="st">"500px"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visEdges</span>(<span class="at">smooth =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visOptions</span>(<span class="at">highlightNearest =</span> <span class="cn">TRUE</span>, <span class="at">nodesIdSelection =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visPhysics</span>(<span class="at">solver =</span> <span class="st">"forceAtlas2Based"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="htmlwidget-98899c83c740f9ec9699" style="width:800px;height:500px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-98899c83c740f9ec9699">{"x":{"nodes":{"id":["全球","新加坡","净值","人士","地区","国家","报告","私人","财富","专业","企业","提供","管理","家族","办公室","中国","计划","投资者","金融","资金","业务","规划","方面","个人","国际","市场","进行","美国","机构","主要","投资","公司","人群","国内","成为","发展","海外","设立","行业","监管","目前","家庭","服务","资产","经济","信托","境外","家办","包括","影响","政策","税收","相关","税务","选择","增长","数量","居民","可能","配置","信息","法律","收入","一个","申请","拥有","基金","移民","银行","教育","方式","持有","客户","未来","资本","要求","产品","方案","环球","离岸","身份","税率","账户","交换","金融机构","委托人","受托人","受益人","个人简介","环境","香港","重要","需求","需要","超过","风险","没有","顾问","规定","财产"],"label":["全球","新加坡","净值","人士","地区","国家","报告","私人","财富","专业","企业","提供","管理","家族","办公室","中国","计划","投资者","金融","资金","业务","规划","方面","个人","国际","市场","进行","美国","机构","主要","投资","公司","人群","国内","成为","发展","海外","设立","行业","监管","目前","家庭","服务","资产","经济","信托","境外","家办","包括","影响","政策","税收","相关","税务","选择","增长","数量","居民","可能","配置","信息","法律","收入","一个","申请","拥有","基金","移民","银行","教育","方式","持有","客户","未来","资本","要求","产品","方案","环球","离岸","身份","税率","账户","交换","金融机构","委托人","受托人","受益人","个人简介","环境","香港","重要","需求","需要","超过","风险","没有","顾问","规定","财产"]},"edges":{"from":["办公室","人群","家族","信托","管理","投资","办公室","新加坡","投资","中国","资产","管理","全球","中国","新加坡","家族","净值","海外","人士","家族","新加坡","交换","家族","公司","家族","新加坡","新加坡","信息","个人简介","新加坡","净值","信托","信托","净值","企业","信托","新加坡","净值","账户","办公室","投资","私人","净值","财富","海外","家族","中国","信托","移民","中国","新加坡","信托","国家","提供","中国","新加坡","投资","净值","信托","全球","家办","个人简介","净值","人士","信息","中国","方案","一个","全球","客户","离岸","中国","环球","交换","账户","居民","办公室","税务","客户","提供"],"to":["家族","净值","新加坡","家族","财富","资产","新加坡","香港","新加坡","新加坡","配置","资产","新加坡","净值","资产","设立","资产","资产","净值","资产","管理","信息","管理","新加坡","财富","设立","财富","账户","移民","税收","财富","资产","设立","投资","新加坡","委托人","移民","新加坡","金融","设立","管理","银行","家庭","资产","移民","投资","资产","新加坡","资产","财富","金融","财产","新加坡","服务","人群","选择","移民","家族","受益人","财富","新加坡","环球","客户","新加坡","金融","投资","移民","新加坡","资产","资产","银行","海外","移民","账户","银行","税收","管理","资产","移民","新加坡"],"value":[405,371,256,210,200,198,196,195,194,186,186,184,181,181,173,156,152,152,146,142,141,140,137,134,133,132,131,131,126,124,123,122,120,117,115,115,114,113,113,110,109,108,108,104,104,103,102,102,102,101,100,100,99,98,98,96,96,95,95,94,92,92,91,90,90,89,89,88,87,87,87,86,86,86,85,85,84,84,84,83]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"smooth":false},"physics":{"solver":"forceAtlas2Based"}},"groups":null,"width":"800px","height":"500px","idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":true,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -1058,62 +1151,79 @@ Insights from Co-occurrence Keyword Network
 <p><strong>Conclusion</strong>: These patterns demonstrate that Chinese HNWIs approach offshore wealth management as a <strong>multifaceted decision process</strong>. Singapore is appealing not for a single advantage, but for its ability to address <strong>multiple interconnected concerns</strong> simultaneously.</p>
 </div>
 </div>
-<div id="8eb15666" class="cell" data-execution_count="22">
+<div class="cell">
 <details class="code-fold">
 <summary>Click to view code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算节点的度中心性</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>degree_centrality <span class="op">=</span> nx.degree_centrality(G)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 按中心性排序，取前10个关键词</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>top_nodes <span class="op">=</span> <span class="bu">sorted</span>(degree_centrality.items(), key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)[:<span class="dv">10</span>]</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 打印结果</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Top 10 关键词:"</span>)</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word, score <span class="kw">in</span> top_nodes:</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>word<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>score<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算节点的度中心性</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>degree_centrality <span class="op">=</span> nx.degree_centrality(G)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 按中心性排序，取前10个关键词</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>top_nodes <span class="op">=</span> <span class="bu">sorted</span>(degree_centrality.items(), key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)[:<span class="dv">10</span>]</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 打印结果</span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Top 10 关键词:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Top 10 关键词:
-新加坡: 1.000
-资产: 1.000
-投资: 1.000
-公司: 1.000
-管理: 0.980
-净值: 0.970
-中国: 0.970
-香港: 0.970
-进行: 0.970
-财富: 0.960</code></pre>
+<pre><code>Top 10 关键词:</code></pre>
 </div>
-</div>
-<div id="596a6a28" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Click to view code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> community <span class="im">as</span> community_louvain  <span class="co"># pip install python-louvain</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.cm <span class="im">as</span> cm</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 社区划分</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>partition <span class="op">=</span> community_louvain.best_partition(G)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置颜色映射</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="bu">float</span>(<span class="bu">len</span>(<span class="bu">set</span>(partition.values())))</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> nx.spring_layout(G, k<span class="op">=</span><span class="fl">0.5</span>, seed<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [cm.tab20(i <span class="op">/</span> size) <span class="cf">for</span> i <span class="kw">in</span> partition.values()]</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">12</span>))</span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_nodes(G, pos, node_size<span class="op">=</span><span class="dv">500</span>, node_color<span class="op">=</span>colors, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_edges(G, pos, width<span class="op">=</span><span class="fl">0.5</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_labels(G, pos, font_size<span class="op">=</span><span class="dv">10</span>, font_family<span class="op">=</span><span class="st">'Arial Unicode MS'</span>)</span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"关键词共现网络中的话题社区"</span>)</span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">"off"</span>)</span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word, score <span class="kw">in</span> top_nodes:</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>word<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>score<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display">
+<div class="cell-output cell-output-stdout">
+<pre><code>新加坡: 0.919
+资产: 0.808
+投资: 0.737
+净值: 0.646
+家族: 0.646
+中国: 0.646
+全球: 0.576
+财富: 0.556
+管理: 0.545
+信托: 0.515</code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> community <span class="im">as</span> community_louvain  <span class="co"># pip install python-louvain</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.cm <span class="im">as</span> cm</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 社区划分</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>partition <span class="op">=</span> community_louvain.best_partition(G)</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置颜色映射</span></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="bu">float</span>(<span class="bu">len</span>(<span class="bu">set</span>(partition.values())))</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> nx.spring_layout(G, k<span class="op">=</span><span class="fl">0.5</span>, seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [cm.tab20(i <span class="op">/</span> size) <span class="cf">for</span> i <span class="kw">in</span> partition.values()]</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">12</span>))</span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_nodes(G, pos, node_size<span class="op">=</span><span class="dv">500</span>, node_color<span class="op">=</span>colors, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_edges(G, pos, width<span class="op">=</span><span class="fl">0.5</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_labels(G, pos, font_size<span class="op">=</span><span class="dv">10</span>, font_family<span class="op">=</span><span class="st">'Arial Unicode MS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'全球': Text(-0.0842880072427534, 0.17642179336863892, '全球'), '金融': Text(0.05624833749245123, 0.3834226212036606, '金融'), '新加坡': Text(-0.08497404385074436, 0.06066347567584077, '新加坡'), '净值': Text(-0.12316501575028638, 0.06758314042122512, '净值'), '私人': Text(0.4291529391561576, 0.09228889945579109, '私人'), '地区': Text(0.11671761858545471, 0.8328215789655264, '地区'), '国家': Text(-0.09862470217883511, 0.2914083669039099, '国家'), '财富': Text(-0.07332153419506195, -0.01595506949165427, '财富'), '人士': Text(-0.41097066165841434, -0.040305407660239934, '人士'), '报告': Text(-0.7082110990347876, -0.02135728351719375, '报告'), '银行': Text(0.2351141971809941, 0.18242880770496608, '银行'), '资产': Text(0.00576863003990864, -0.07697548958583662, '资产'), '专业': Text(0.34092551958244494, -0.19892352958019727, '专业'), '企业': Text(-0.002426323805060224, 0.24678082221412945, '企业'), '提供': Text(0.2371455838795942, -0.018858103700529184, '提供'), '管理': Text(0.06070441460651799, -0.008835303128911733, '管理'), '环境': Text(-0.7695945468510266, 0.5429038827187079, '环境'), '税收': Text(0.06353293504386714, 0.3274815695170288, '税收'), '家族': Text(-0.0057276376772351185, -0.12619865024682142, '家族'), '办公室': Text(-0.1251832843851663, -0.12033500158408887, '办公室'), '香港': Text(4.313755083802968e-05, 0.03707249675843364, '香港'), '中国': Text(-0.08808825871384614, 0.12436407168880675, '中国'), '计划': Text(-0.5740573364757406, 0.2251158620430338, '计划'), '投资者': Text(-0.6392947207291862, 0.6999131809489467, '投资者'), '资金': Text(0.6321690421302495, 0.06619355526512917, '资金'), '规划': Text(0.3473221115038492, -0.29454185876101524, '规划'), '业务': Text(0.37589990584531413, 0.15179368863324727, '业务'), '方面': Text(-0.3519942058119079, 0.4273625524795799, '方面'), '重要': Text(-0.7319040479750449, 0.18353108060295853, '重要'), '个人': Text(-0.1400673646313397, 0.5727411073020163, '个人'), '拥有': Text(-0.2947749563408743, -0.316267112228499, '拥有'), '国际': Text(0.3876040331993376, 0.009546230064741194, '国际'), '市场': Text(0.16600808190219146, 0.451079027470913, '市场'), '机构': Text(0.3439712165298118, 0.3154922163858356, '机构'), '进行': Text(-0.15110657514162265, 0.2439257401535137, '进行'), '美国': Text(-0.5211834018571875, -0.11091465718174824, '美国'), '投资': Text(-0.03631047914931302, 0.059722957353771214, '投资'), '主要': Text(-0.2600882041806166, -0.09985431289464497, '主要'), '公司': Text(-0.10168993551534859, -0.07074362524264605, '公司'), '法律': Text(0.024728050037416426, -0.4706470161573844, '法律'), '服务': Text(0.18726183004421276, -0.06573570421565414, '服务'), '设立': Text(-0.047012457921708814, -0.24440672827461743, '设立'), '人群': Text(-0.27000540411795776, 0.05107034394187539, '人群'), '需求': Text(-0.10433921035159009, -0.40731132489416866, '需求'), '需要': Text(0.41056301944516166, 0.2796734626476729, '需要'), '海外': Text(0.13115080880618674, -0.1136773771268126, '海外'), '国内': Text(0.3272805410404342, 0.8525681841187821, '国内'), '成为': Text(-0.5013858040469009, 0.09960538158625813, '成为'), '发展': Text(-0.1796399460966992, 0.43904544099784026, '发展'), '行业': Text(0.19329503501919007, -0.7149024341774384, '行业'), '监管': Text(-0.19502236118649272, 0.841900498270216, '监管'), '目前': Text(-0.44985595407173506, -0.6355625619793502, '目前'), '家庭': Text(0.15716853276100706, -0.31823899961044017, '家庭'), '经济': Text(-0.4274792594277936, 0.45762726870229814, '经济'), '超过': Text(-0.75314498246751, 0.08385544981063961, '超过'), '信托': Text(0.17438184102589196, -0.2604210678534205, '信托'), '方式': Text(0.32786644458760134, 0.6391600104236654, '方式'), '选择': Text(-0.35392904415241305, 0.0264699172301304, '选择'), '境外': Text(-0.15596734345267008, -0.6078661216596724, '境外'), '家办': Text(-0.23220868750146498, -0.3959944125101126, '家办'), '包括': Text(0.31728638180474367, 0.09771096931203982, '包括'), '风险': Text(-0.41412911015696996, -0.44793905412447294, '风险'), '影响': Text(-0.5425464095074639, -0.7937098929994423, '影响'), '政策': Text(0.1887002437963138, -0.45248622580216197, '政策'), '相关': Text(-0.40948413865850486, 0.2840612000872398, '相关'), '身份': Text(0.5700620656984552, -0.1667525779370259, '身份'), '方案': Text(0.49110005604537726, -0.3812731093269936, '方案'), '资本': Text(0.45532395626189387, 0.6246757225326001, '资本'), '税务': Text(0.12470219631438775, 0.1465387749062178, '税务'), '增长': Text(-0.17867371712758728, 0.6594538092290321, '增长'), '数量': Text(0.5371770427501534, 0.26914455123166303, '数量'), '税率': Text(0.5748524450367416, 0.5015335546433848, '税率'), '要求': Text(-0.3059954188274524, 0.2710337187761868, '要求'), '居民': Text(0.25882546076038454, 0.4467471313513187, '居民'), '可能': Text(-0.28943286268369683, -0.8260982192957885, '可能'), '配置': Text(0.04369572499136623, -0.30813747426779975, '配置'), '信息': Text(0.05175172454756748, 0.5332683129908465, '信息'), '收入': Text(0.5835836758859314, 0.6290108766515359, '收入'), '一个': Text(-0.2934577047704411, -0.22225815557478162, '一个'), '申请': Text(-0.6286813953176749, -0.29106930093675104, '申请'), '基金': Text(-0.3777673753180892, -0.1463425195879327, '基金'), '移民': Text(0.06330153953516733, -0.23070493240108714, '移民'), '没有': Text(-0.7378798813537407, -0.7960047445460697, '没有'), '教育': Text(-0.4715785531312976, -0.30605002648668866, '教育'), '未来': Text(-0.6710754106250819, 0.37742991831070205, '未来'), '顾问': Text(0.3598440517824097, -0.6121235572332767, '顾问'), '持有': Text(-0.038210676322923215, -0.721297810673328, '持有'), '客户': Text(0.22721713395167756, -0.11627888701891935, '客户'), '规定': Text(0.15623646583349513, -1.0, '规定'), '产品': Text(0.8338880136204145, 0.058107034118190536, '产品'), '环球': Text(0.46001929965593563, -0.515134461143898, '环球'), '离岸': Text(0.12152202057239804, 0.2080647115443526, '离岸'), '金融机构': Text(0.04457603324662054, 0.8386621312441607, '金融机构'), '账户': Text(0.1517331728159757, 0.3544471719005083, '账户'), '交换': Text(0.07799099307208715, 0.7009159593954648, '交换'), '财产': Text(0.5741571575144769, -0.6929282607502738, '财产'), '委托人': Text(0.4848969247043041, -0.7817519740963982, '委托人'), '受托人': Text(0.8557837910978633, -0.891819979082537, '受托人'), '受益人': Text(0.7590085396770473, -0.6206920254723107, '受益人'), '个人简介': Text(0.306689533778002, -0.46815788923412965, '个人简介')}</code></pre>
+</div>
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"关键词共现网络中的话题社区"</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">"off"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(np.float64(-0.9402592723356601), np.float64(1.0264485165824968), np.float64(-1.194519659332472), np.float64(1.0470878434512543))</code></pre>
+</div>
+<details class="code-fold">
+<summary>Click to view code</summary>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Market_files/figure-html/cell-24-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="Market_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="1344"></p>
 </figure>
 </div>
 </div>
