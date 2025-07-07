@@ -1,1 +1,77 @@
-/* css styles */
+/* ===== DeepSeek-Inspired Quarto CSS ===== */
+
+/* Smooth gradient background */
+body {
+  background: linear-gradient(135deg, #f0f4ff, #e6ecff);
+  color: #1e293b;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Headers */
+h1, h2, h3, h4 {
+  color: #1e3a8a;
+  font-weight: 600;
+  border-bottom: none;
+}
+
+/* Navbar (if used) */
+.navbar {
+  background: #ffffffee;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.navbar a {
+  color: #1e3a8a !important;
+  font-weight: 500;
+}
+
+.navbar a:hover {
+  color: #3b82f6 !important;
+}
+
+/* Content section */
+section, .content {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  padding: 2em;
+  margin-bottom: 2em;
+}
+
+/* Buttons/links */
+a.button, .btn {
+  background: #3b82f6;
+  color: white !important;
+  padding: 0.6em 1.2em;
+  border-radius: 999px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+a.button:hover, .btn:hover {
+  background: #2563eb;
+}
+
+/* Code styling */
+pre, code {
+  background: #f1f5f9;
+  color: #0f172a;
+  font-family: 'Fira Code', monospace;
+  padding: 0.5em 1em;
+  border-radius: 8px;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid #60a5fa;
+  background: #f0f9ff;
+  padding: 1em;
+  font-style: italic;
+  color: #334155;
+  border-radius: 6px;
+}

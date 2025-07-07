@@ -2,18 +2,33 @@ project:
   type: website
 
 website:
-  title: "RFM Project"
   navbar:
+    logo: "Picture/Logo1.png"
+    background: success
     left:
-      - href: index.qmd
-        text: Home
+      - text: "Market Survey"
+        href: "Market.qmd"
+      
+    right:
       - about.qmd
-
+    tools:
+      - icon: twitter
+        href: https://twitter.com
+      - icon: github
+        menu:
+          - text: Source Code
+            href: https://github.com/Fnrion/RFM-Project
+          - text: Report a Bug
+            href: https://bugs.com
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme:
+      light: cosmo
+      dark: morph
     toc: true
-
+    fontsize: 1 em
+    linestretch: 1.6
+    backgroundcolor: Ivory
+    light: darkly
+    dark: flatly
 editor: visual
-

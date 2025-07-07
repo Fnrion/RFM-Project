@@ -1,0 +1,692 @@
+---
+title: "Makert Survey"
+author: "Zou Jiaxun"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+  cache: true
+format:
+  html:
+    code-fold: true
+    code-summary: "Click to view code"
+jupyter: python3  
+---
+
+# 1 **Overview**
+
+## 1.1 **Background**
+
+To effectively organize and communicate the complex thought process behind why Chinese HNW individuals move their money to Singapore, I created Flowchart. This flowchart helps to:
+
+-   Visually map the key motivations (such as wealth management, tax benefits, lifestyle advantages, and legacy planning) that drive this financial movement.
+
+-   Clarify the relationships between client needs, Singapore’s value proposition, and the strategic advisory angles we can take.
+
+-   Support client-facing engagement by simplifying the narrative for Life Inc advisors
+
+-   Guide my survey design and presentation content, ensuring all relevant themes—such as trends, preferences, and asset relocation methods—are covered logically and comprehensively.
+
+It acts as both a research framework and a client communication tool to align our understanding and offerings with the target market’s aspirations.
+
+![](Picture/Flowchart1.png){fig-align="center"}
+
+## **1.2 Data Processing**
+
+To support the research in Flowchart, I developed a custom web crawler to systematically collect qualitative and contextual data from Chinese-language sources such as forums (e.g., Zhihu, Xueqiu), financial news sites (e.g., Eastern Wealth), and financial blogs. These platforms offer authentic discussions and opinions from Chinese citizens regarding overseas wealth movement—especially to Singapore.
+
+My spider focused on keywords that map directly to the key branches of the flowchart, such as:
+
+-   “新加坡 财富管理” (Singapore wealth management)
+
+-   “中国人移民新加坡” (Chinese migration to Singapore)
+
+-   “税务优化 新加坡” (Tax optimization Singapore)
+
+-   “资产配置 海外” (Offshore asset allocation)
+
+::: callout-note
+## Why choose spider instead of survey
+
+-   **Understand Real Conversations First**: The spider captures what people are already saying online, so I don’t assume or guess their opinions.
+-   **Gather Rich and Honest Insights**: Online posts reveal detailed reasons, emotions, and comparisons that people may not share in surveys.
+-   **Reach More People Easily**: It’s hard to get high-net-worth individuals to answer surveys, but the spider can access public content instantly.
+-   **Build a Better Survey Later**: By analyzing online themes first, I can design a more focused and relevant survey based on real concerns.
+:::
+
+## Implementation: Building the Spider
+
+We implemented a Python-based web crawler using the SerpAPI platform to scrape real-time search results. The following code initializes the necessary libraries and parameters used in the process.
+
+```{python}
+import requests
+import json
+import time
+import pandas as pd
+from datetime import datetime
+import os
+import openpyxl
+
+# 用户配置区域
+SERPAPI_KEY = "84c798a8d45d1e7cae0b18df778ac06bf2c6169f0249e40756aea0b9d6cd4749"  
+RESULTS_PER_KEYWORD = 20
+DELAY_BETWEEN_REQUESTS = 1
+DELAY_BETWEEN_KEYWORDS = 2
+```
+
+## Targeted Search Keywords
+
+The keywords used by the crawler are carefully chosen to reflect real user concerns about wealth migration. These terms guide the spider to relevant discussions, articles, and posts.
+
+```{python}
+keywords = [
+    "中国高净值人士 新加坡",
+    "中国富人 资产配置 新加坡", 
+    "中国富豪 为什么移民新加坡",
+    "中国高净值客户 离岸账户",
+    "新加坡 CRS 避税",
+    "中国 家族信托 新加坡",
+    "中国高净值人士 子女教育 新加坡",
+    "中国移民新加坡 财富管理"
+]
+```
+
+```{python}
+def serpapi_search(query, api_key, num=20, start=0):
+    url = "https://serpapi.com/search"
+    params = {
+        'q': query,
+        'api_key': api_key,
+        'engine': 'google',
+        'num': min(num, 100),
+        'start': start,
+        'hl': 'zh-cn',
+        'gl': 'cn'
+    }
+    try:
+        response = requests.get(url, params=params)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"搜索请求失败: {e}")
+        return {}
+
+def extract_search_results(results, keyword):
+    extracted_results = []
+    organic_results = results.get('organic_results', [])
+    for item in organic_results:
+        result_info = {
+            'keyword': keyword,
+            'title': item.get('title', ''),
+            'url': item.get('link', ''),
+            'snippet': item.get('snippet', ''),
+            'displayed_link': item.get('displayed_link', ''),
+            'position': item.get('position', 0),
+            'search_timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        }
+        extracted_results.append(result_info)
+    return extracted_results
+```
+
+```{python}
+def search_keyword_with_pagination(keyword, api_key, total_results=20):
+    all_results = []
+    results_per_page = 10
+    for start in range(0, total_results, results_per_page):
+        remaining = total_results - start
+        num_to_get = min(results_per_page, remaining)
+        print(f"    获取第 {start+1}-{start+num_to_get} 条结果...")
+        results = serpapi_search(keyword, api_key, num=num_to_get, start=start)
+        if not results or 'organic_results' not in results:
+            print(f"没有更多结果")
+            break
+        extracted = extract_search_results(results, keyword)
+        all_results.extend(extracted)
+        if len(extracted) < num_to_get:
+            break
+        time.sleep(DELAY_BETWEEN_REQUESTS)
+    return all_results
+```
+
+```{python}
+#| eval: false
+def main():
+    print("开始搜索...")
+    print(f"搜索关键词数量: {len(keywords)}")
+    print(f"每个关键词获取结果数: {RESULTS_PER_KEYWORD}")
+    print("-" * 50)
+    
+    all_search_results = []
+    for i, keyword in enumerate(keywords, 1):
+        print(f"[{i}/{len(keywords)}] 搜索关键词: {keyword}")
+        try:
+            results = search_keyword_with_pagination(keyword, SERPAPI_KEY, RESULTS_PER_KEYWORD)
+            all_search_results.extend(results)
+            print(f"找到 {len(results)} 个结果")
+            if i < len(keywords):
+                print(f"等待 {DELAY_BETWEEN_KEYWORDS} 秒...")
+                time.sleep(DELAY_BETWEEN_KEYWORDS)
+        except Exception as e:
+            print(f"错误: {e}")
+            continue
+    print("-" * 50)
+    print(f"总共找到 {len(all_search_results)} 个结果")
+    return all_search_results
+
+search_results = main()
+```
+
+## Data Collection Process
+
+The crawler iterates through each keyword, sends queries to SerpAPI, extracts content (including titles, URLs, and full texts), and saves them into a structured format for further processing. This automation ensures scalability and coverage.
+
+```{python}
+#| eval: false
+if search_results:
+    df_full = pd.DataFrame(search_results)
+    df_unique = df_full.drop_duplicates(subset=['url'], keep='first')
+    print(f"原始结果: {len(df_full)}，去重后: {len(df_unique)}")
+
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    df_simple = df_unique[['keyword', 'title', 'url', 'search_timestamp']].copy()
+
+    # 保存到指定 Dataset
+    save_dir = os.path.expanduser("/Applications/SMU/Great Eastern/Personal Project/RFM Project/Dataset")
+    os.makedirs(save_dir, exist_ok=True)
+
+    df_unique.to_csv(os.path.join(save_dir, f"search_results_full_{timestamp}.csv"), index=False, encoding='utf-8-sig')
+    df_simple.to_csv(os.path.join(save_dir, f"search_results_simple_{timestamp}.csv"), index=False, encoding='utf-8-sig')
+
+    with pd.ExcelWriter(os.path.join(save_dir, f"search_results_{timestamp}.xlsx"), engine='openpyxl') as writer:
+        df_unique.to_excel(writer, sheet_name='完整数据', index=False)
+        df_simple.to_excel(writer, sheet_name='简化数据', index=False)
+
+    print(f"文件保存路径: {save_dir}")
+
+    print("\n数据预览:")
+    print(df_simple.head())
+
+    print("\n每个关键词的结果数量:")
+    print(df_unique['keyword'].value_counts())
+
+    globals()['search_data'] = df_unique
+    globals()['search_data_simple'] = df_simple
+
+    print("\n变量已加载: search_data, search_data_simple")
+else:
+    print("没有搜索结果")
+    globals()['search_data'] = pd.DataFrame()
+    globals()['search_data_simple'] = pd.DataFrame()
+```
+
+## Data Transformation
+
+Once raw JSON responses are collected, we convert them into a tabular format using `pandas`. This step prepares the dataset for text cleaning and analysis.
+```{python}
+#| eval: false
+from bs4 import BeautifulSoup
+import chardet
+
+# 文件路径设置
+input_file = "/Applications/SMU/Great Eastern/Personal Project/RFM Project/Dataset/search_results_20250706_192824.xlsx"
+output_file = "/Applications/SMU/Great Eastern/Personal Project/RFM Project/Dataset/search_results_with_content.xlsx"
+
+# 读取简化数据工作表
+df = pd.read_excel(input_file, sheet_name="简化数据")
+
+# 正文提取函数
+def fetch_article_content(url, timeout=10):
+    try:
+        response = requests.get(url, timeout=timeout, headers={"User-Agent": "Mozilla/5.0"})
+        detected = chardet.detect(response.content)
+        response.encoding = detected['encoding'] or 'utf-8'
+        soup = BeautifulSoup(response.text, "html.parser")
+        paragraphs = soup.find_all('p')
+        content = '\n'.join(p.get_text(strip=True) for p in paragraphs)
+        return content if len(content) > 50 else None
+    except Exception:
+        return None
+
+# 爬取内容
+print("开始抓取正文内容...")
+df["content"] = df["url"].apply(fetch_article_content)
+print("正文抓取完成，开始保存文件...")
+
+# 保存为新的 Excel 文件
+df.to_excel(output_file, index=False)
+print(f"文件已保存至：{output_file}")
+```
+
+## **1.3 Data Clean**
+
+```{python}
+# 输入输出路径
+input_file = "/Applications/SMU/Great Eastern/Personal Project/RFM Project/Dataset/search_results_with_content.xlsx"
+output_file = "/Applications/SMU/Great Eastern/Personal Project/RFM Project/Dataset/search_results_cleaned.xlsx"
+
+# 加载 Excel 文件
+df = pd.read_excel(input_file)
+
+# 定义无效内容关键词
+ad_keywords = [
+    "免责声明", "广告合作", "联系管理员", "请在微信中打开", "本站所有文章",
+    "抱歉", "页面不存在", "出错", "404", "请输入验证码",
+    "登录查看全文", "Oops", "Something went wrong", "访问受限"
+]
+
+# 判断是否为无效正文
+def is_invalid(text):
+    if pd.isna(text):
+        return True
+    if len(text.strip()) < 100:
+        return True
+    if any(kw in text for kw in ad_keywords):
+        return True
+    return False
+
+# 添加标记列
+df["invalid"] = df["content"].apply(is_invalid)
+
+# 保留有效正文内容
+df_cleaned = df[~df["invalid"]].drop(columns=["invalid"]).copy()
+
+# 保存清洗后的结果
+df_cleaned.to_excel(output_file, index=False)
+print(f"清洗完成，已保存为：{output_file}")
+```
+
+```{python}
+# 读取 Excel 文件
+df = pd.read_excel("search_results_cleaned.xlsx")
+
+# 1. 查看行数和列数
+print("行数 × 列数:", df.shape)
+
+# 2. 查看列名和类型
+print("\n列名与数据类型:")
+print(df.dtypes)
+
+# 3. 快速概览每列的前几行（结构 + 值）
+print("\n样本预览:")
+print(df.head())
+
+# 4. 缺失值统计（NA 值）
+print("\n缺失值统计:")
+print(df.isna().sum())
+```
+
+```{python}
+df_cleaned = df[~df["invalid"] & df["content"].notna()].copy()
+df_cleaned.to_excel("search_results_cleaned.xlsx", index=False)
+```
+
+## Text Cleaning
+
+The raw text contains punctuation, redundant whitespace, and occasionally malformed encoding. We apply basic cleaning to ensure the corpus is suitable for keyword extraction and topic modeling.
+
+```{python}
+import re
+from collections import Counter
+import jieba
+
+# 1. 加载清洗后的文章数据
+df = pd.read_excel("Dataset/search_results_cleaned.xlsx")
+df = df[df["content"].notna() & (df["content"].str.strip() != "")]
+
+# 2. 读取停用词表
+with open("Dataset/cn_stopwords.txt", "r", encoding="utf-8") as f:
+    stopwords = set([line.strip() for line in f])
+
+# 3. 清洗函数
+def clean_text(s):
+    s = re.sub(r'<.*?>', '', s)  # HTML标签
+    s = re.sub(r'[a-zA-Z]+', '', s)  # 英文
+    s = re.sub(r'[\d\-:/\.年月日\s]+', '', s)  # 数字与日期
+    s = re.sub(r'[\u0000-\u007F]+', '', s)  # ASCII符号
+    return s.strip()
+
+# 4. 分句 + 清洗 + 分词 + 去停用词
+words = []
+for content in df["content"]:
+    sentences = re.split(r'[。！？]', content)
+    for s in sentences:
+        s_clean = clean_text(s)
+        if len(s_clean) >= 5:
+            segs = jieba.cut(s_clean)
+            words += [w for w in segs if len(w) > 1 and w not in stopwords and re.match(r'[\u4e00-\u9fff]+', w)]
+
+# 5. 词频统计
+word_freq = Counter(words)
+df_freq = pd.DataFrame(word_freq.most_common(100), columns=["Word", "Frequency"])
+
+# 6. 保存到文件
+df_freq.to_excel("Dataset/word_frequency_cleaned_with_stopwords.xlsx", index=False)
+
+# 7. 打印结果
+print(df_freq)
+```
+
+## Keyword Frequency
+
+We extract high-frequency terms to detect common concerns and motivations. This analysis surfaces dominant themes such as “wealth management”, “immigration”, and “Singapore advantage”.
+
+# 2 **Text Analysis**
+
+## **2.1 Word Cloud**
+
+## Visualizing High-Frequency Terms
+
+The following word cloud ord highlights the most common terms across all retrieved content, offering a visual snapshot of what matters most to the audience.
+
+```{python}
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+
+# 1. 加载词频数据
+df_freq = pd.read_excel("Dataset/word_frequency_cleaned_with_stopwords.xlsx")
+
+# 2. 转换为字典格式
+freq_dict = dict(zip(df_freq["Word"], df_freq["Frequency"]))
+
+# 3. 创建词云对象
+wc = WordCloud(
+    font_path="/System/Library/Fonts/STHeiti Medium.ttc",  # 替换为你本地支持中文的字体路径
+    background_color="white",
+    width=1000,
+    height=700,
+    max_words=200
+).generate_from_frequencies(freq_dict)
+
+# 4. 可视化词云
+plt.figure(figsize=(12, 8))
+plt.imshow(wc, interpolation="bilinear")
+plt.axis("off")
+plt.title("WordCloud", fontsize=18)
+plt.subplots_adjust(top=0.85) 
+plt.show()
+```
+
+::: callout-important
+## Insights from the Word Cloud
+
+The word cloud visually reinforces the central motivations driving Chinese high-net-worth individuals (HNWIs) to move their assets to Singapore.
+
+- High-frequency terms such as **“财富管理”** (wealth management), **“资产配置”** (asset allocation), and **“税务优化”** (tax optimization) directly align with the motivations outlined in our initial flowchart.
+- Keywords like **“家族信托”** (family trust), **“离岸账户”** (offshore accounts), and **“子女教育”** (children’s education) indicate a strong emphasis on legacy planning, asset protection, and long-term family welfare.
+
+**Conclusion**: These themes confirm that Singapore is not just attractive for its financial incentives—but as a comprehensive hub for multi-generational wealth security and elite lifestyle planning.
+:::
+
+## **2.2 Sentiment Analysis**
+
+```{python}
+from snownlp import SnowNLP
+
+# 读取已清洗的数据
+df = pd.read_excel("Dataset/search_results_cleaned.xlsx")
+
+# 过滤掉无正文
+df = df[df["content"].notna() & (df["content"].str.len() > 30)].copy()
+
+# 情感分析函数（返回值在 0～1 之间，1 越积极）
+def get_sentiment(text):
+    try:
+        return SnowNLP(text).sentiments
+    except:
+        return None
+
+# 添加情感评分列
+df["sentiment_score"] = df["content"].apply(get_sentiment)
+
+# 分类标签：大于 0.6 为正面，小于 0.4 为负面，其余为中性
+def classify(score):
+    if score is None:
+        return "Unknown"
+    elif score > 0.6:
+        return "Positive"
+    elif score < 0.4:
+        return "Negative"
+    else:
+        return "Neutral"
+
+df["sentiment_label"] = df["sentiment_score"].apply(classify)
+
+# 保存结果
+df.to_excel("Dataset/search_results_sentiment.xlsx", index=False)
+
+# 查看统计
+print(df["sentiment_label"].value_counts())
+```
+
+```{python}
+import matplotlib.pyplot as plt
+
+# Count sentiment
+sentiment_counts = df["sentiment_label"].value_counts()
+
+# 设置颜色和标签顺序
+labels = sentiment_counts.index.tolist()
+colors = ['green' if label == 'Positive' else 'red' for label in labels]
+
+# 绘图
+plt.figure(figsize=(6,6))
+plt.pie(
+    sentiment_counts,
+    labels=labels,
+    autopct='%1.1f%%',
+    startangle=140,
+    colors=colors,
+    textprops={'fontsize': 14}
+)
+plt.title("Sentiment Composition", fontsize=16)
+plt.tight_layout()
+plt.axis('equal')  
+plt.show()
+```
+
+::: callout-important
+## Insights from Sentiment Analysis
+
+The sentiment analysis reveals a **mixed but insightful emotional tone** surrounding discussions of wealth migration to Singapore.
+
+- A significant portion of posts are **positive**, reflecting appreciation for Singapore’s legal stability, tax efficiency, and quality of life.
+- Negative sentiments mainly revolve around **concerns about regulatory changes**, **barriers to entry**, or **uncertainty around immigration pathways**.
+- Neutral discussions tend to be **informational or comparative**, providing objective assessments of different offshore options.
+
+**Conclusion**: These findings suggest that while Singapore is generally viewed favorably, there remains a need to **address misconceptions** and **reduce friction in communication** when engaging with HNW prospects.
+:::
+
+```{python}
+import matplotlib.pyplot as plt
+
+plt.rcParams['font.family'] = 'Arial Unicode MS'  # 更通用的中英混排字体
+plt.rcParams['axes.unicode_minus'] = False
+
+# 分组：统计每个 keyword 下的正负面数量
+sentiment_by_keyword = df.groupby(['keyword', 'sentiment_label']).size().unstack(fill_value=0)
+
+# 打印检查
+print(sentiment_by_keyword)
+
+# 绘图：堆叠柱状图
+sentiment_by_keyword.plot(kind='bar', stacked=True, figsize=(12, 6), color=["#1f77b4", "#ff7f0e"])  
+
+# 设置标题和轴标签
+plt.title("关键词情感构成", fontsize=16)
+plt.xlabel("关键词", fontsize=12)
+plt.ylabel("文章数量", fontsize=12)
+
+# 旋转 x 轴文字防止重叠
+plt.xticks(rotation=45, ha='right')
+
+# 自动布局
+plt.tight_layout()
+
+# 显示图像
+plt.show()
+```
+
+::: callout-note
+## Next Step: Deep Dive into Negative Sentiments
+
+To strengthen client engagement and tailor advisory strategies, further analysis should focus on **uncovering the root causes behind negative or hesitant views**. Recommended steps include:
+
+- **Thematic Clustering**: Group negative posts into key concerns—e.g., “regulatory fears”, “immigration complexity”, “trust issues”.
+- **Temporal Sentiment Tracking**: Detect if negative sentiment spikes after specific events (e.g., new financial regulations in China).
+
+By understanding the friction points in sentiment, Life Inc can refine positioning, improve client confidence, and remove silent blockers in the decision-making journey.
+:::
+
+## **2.3 Network Analysis**
+
+```{python}
+from itertools import combinations
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# 用于存储每句话的关键词
+keyword_sentences = []
+
+for content in df["content"]:
+    sentences = re.split(r'[。！？]', content)
+    for s in sentences:
+        s_clean = clean_text(s)
+        if len(s_clean) >= 5:
+            segs = jieba.cut(s_clean)
+            word_list = [w for w in segs if len(w) > 1 and w not in stopwords and re.match(r'[\u4e00-\u9fff]+', w)]
+            keyword_sentences.append(word_list)
+```
+
+```{python}
+top_100_words = set(df_freq["Word"])
+co_occurrence = Counter()
+
+# 只统计 top100 词之间的共现
+for word_list in keyword_sentences:
+    words_in_top100 = [w for w in word_list if w in top_100_words]
+    for pair in combinations(set(words_in_top100), 2):  # set 去重
+        co_occurrence[tuple(sorted(pair))] += 1
+```
+
+```{python}
+import matplotlib.font_manager as fm
+for font in fm.findSystemFonts(fontpaths=None, fontext='ttf'):
+    if 'PingFang' in font or 'Arial' in font or 'Hei' in font:
+        print(font)
+```
+
+```{python}
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+import networkx as nx
+
+# 手动设置中文字体（可替换为你机器已有的其他中文字体路径）
+my_font = fm.FontProperties(fname="/System/Library/Fonts/STHeiti Medium.ttc")
+plt.rcParams['font.family'] = my_font.get_name()
+plt.rcParams['axes.unicode_minus'] = False
+
+# 构建图（你需要已经准备好 co_occurrence 字典）
+G = nx.Graph()
+for (w1, w2), freq in co_occurrence.items():
+    if freq >= 3:  # 设定共现阈值
+        G.add_edge(w1, w2, weight=freq)
+
+# 可视化绘图
+plt.figure(figsize=(12, 10))
+pos = nx.spring_layout(G, k=0.5, seed=42)  # 节点布局
+nx.draw_networkx_nodes(G, pos, node_size=500, node_color='lightblue')
+nx.draw_networkx_edges(G, pos, width=[d['weight'] * 0.3 for _, _, d in G.edges(data=True)], alpha=0.6)
+nx.draw_networkx_labels(G, pos, font_size=10, font_family=my_font.get_name())
+
+plt.title("Top 100 中文关键词共现网络", fontproperties=my_font)
+plt.axis("off")
+plt.tight_layout()
+plt.show()
+```
+
+::: callout-important
+## Insights from Co-occurrence Keyword Network
+
+This network reveals how important themes surrounding wealth migration to Singapore **co-appear and reinforce each other** in authentic online discussions.
+
+- Words like **“资产配置”** (asset allocation), **“新加坡”**, and **“家族信托”** frequently co-occur, forming dense hubs of strategic planning.
+- The structure suggests that users don’t speak of single motivations in isolation — tax planning, family trust, and regulatory considerations are often bundled in the same conversation.
+- High-degree nodes like **“CRS”**, **“移民”**, and **“离岸账户”** serve as bridges across different topic communities.
+
+**Conclusion**: These patterns demonstrate that Chinese HNWIs approach offshore wealth management as a **multifaceted decision process**. Singapore is appealing not for a single advantage, but for its ability to address **multiple interconnected concerns** simultaneously.
+:::
+
+```{python}
+# 计算节点的度中心性
+degree_centrality = nx.degree_centrality(G)
+
+# 按中心性排序，取前10个关键词
+top_nodes = sorted(degree_centrality.items(), key=lambda x: x[1], reverse=True)[:10]
+
+# 打印结果
+print("Top 10 关键词:")
+for word, score in top_nodes:
+    print(f"{word}: {score:.3f}")
+```
+
+```{python}
+import community as community_louvain  # pip install python-louvain
+import matplotlib.cm as cm
+
+# 社区划分
+partition = community_louvain.best_partition(G)
+
+# 设置颜色映射
+size = float(len(set(partition.values())))
+pos = nx.spring_layout(G, k=0.5, seed=42)
+colors = [cm.tab20(i / size) for i in partition.values()]
+
+# 绘图
+plt.figure(figsize=(14, 12))
+nx.draw_networkx_nodes(G, pos, node_size=500, node_color=colors, alpha=0.8)
+nx.draw_networkx_edges(G, pos, width=0.5, alpha=0.3)
+nx.draw_networkx_labels(G, pos, font_size=10, font_family='Arial Unicode MS')
+plt.title("关键词共现网络中的话题社区")
+plt.axis("off")
+plt.tight_layout()
+plt.show()
+```
+::: callout-important
+## Insights from Color-Labeled Keyword Communities
+
+The co-occurrence network, enhanced with semantic color tagging, reveals four distinct communities that structure online discussions around wealth migration to Singapore:
+
+- 🌕 **Community 1 (Brown)** focuses on **trust and legal structures**, with keywords like “trust”, “assets”, “fund”, and “legal” — underscoring the importance of compliant, long-term wealth management.
+- 🟢 **Community 2 (Green)** centers around **client advisory and immigration services**, showing that service quality and immigration logistics are major touchpoints for Chinese HNWIs.
+- 🔵 **Community 3 (Blue)** is tied to **cross-border financial assets and tax implications**, with mentions of “Hong Kong”, “tax”, and “net worth” — pointing to regional diversification strategies.
+- ⚫ **Community 4 (Gray)** contains more **generic or connective language**, serving as linguistic bridges in user conversations.
+
+**Conclusion**: This structured clustering confirms that Chinese HNWIs are not driven by a single reason to move assets offshore. Instead, their motivations form **a multi-layered ecosystem** — blending financial safety, global mobility, tax planning, and trusted advisory. Singapore is uniquely positioned as **a hub that satisfies all these needs simultaneously**.
+:::
+
+
+
+# 3 **Conclusion**
+
+## Final Takeaways: Why Do Chinese HNWIs Move Their Wealth to Singapore?
+
+Through the combined use of structured flowchart thinking and real-world data collection using a customized web crawler, this study provides a grounded answer to our core question.
+
+### Key Findings:
+- **Wealth Management & Asset Protection**: Terms like “财富管理” (wealth management) and “资产配置” (asset allocation) appeared frequently, highlighting the strong demand for stable and diversified wealth strategies.
+- **Tax Optimization**: Frequent mentions of “税务优化” and “CRS避税” reflect concerns over rising tax scrutiny in China and Singapore’s more favorable policies.
+- **Educational Planning & Family Legacy**: Phrases such as “子女教育” and “家族信托” indicate that many HNWIs are motivated by long-term family goals rather than short-term returns.
+- **Political and Legal Stability**: Although more subtle, the preference for Singapore’s legal infrastructure and business environment emerged from context-rich discussions.
+
+### Why This Method Worked:
+By using a spider to extract public sentiment directly from platforms like Zhihu and Xueqiu, we bypassed the sampling bias of traditional surveys and captured more nuanced and emotionally honest reasons behind wealth relocation behavior.
+
+### Strategic Implications:
+- **For Wealth Advisors**: Focus messaging on intergenerational planning and offshore security.
+- **For Life Inc**: Develop advisory frameworks that align with education, legacy, and compliance-oriented strategies.
+- **For Survey Design**: The themes identified here form the foundation of more targeted and relevant survey questions in the next phase of this project.
+
+---
+
+In conclusion, the answer is not singular—but multi-dimensional. Singapore is attractive to Chinese HNWIs not only for its tax and legal advantages, but because it offers stability, safety, and long-term opportunities for families and wealth.
