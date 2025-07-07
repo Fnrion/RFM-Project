@@ -717,17 +717,46 @@ plt.axis("off")
 plt.tight_layout()
 plt.show()
 ```
-::: callout-important
-## Insights from Color-Labeled Keyword Communities
+::: {.callout-important icon="💡" title="Improved Insights from Color-Labeled Keyword Communities"}
 
-The co-occurrence network, enhanced with semantic color tagging, reveals four distinct communities that structure online discussions around wealth migration to Singapore:
+The updated co-occurrence network, enhanced with **Louvain clustering** and semantic color tagging, reveals a more **granular structure** than initially described. Instead of just four groups, **six distinct keyword communities** now emerge, each highlighting a different motivation behind wealth migration discussions.
 
-- 🌕 **Community 1 (Brown)** focuses on **trust and legal structures**, with keywords like “trust”, “assets”, “fund”, and “legal” — underscoring the importance of compliant, long-term wealth management.
-- 🟢 **Community 2 (Green)** centers around **client advisory and immigration services**, showing that service quality and immigration logistics are major touchpoints for Chinese HNWIs.
-- 🔵 **Community 3 (Blue)** is tied to **cross-border financial assets and tax implications**, with mentions of “Hong Kong”, “tax”, and “net worth” — pointing to regional diversification strategies.
-- ⚫ **Community 4 (Gray)** contains more **generic or connective language**, serving as linguistic bridges in user conversations.
+- 🟤 **Community 1: Wealth Structuring & Trust Vehicles**  
+  **Keywords:** 信托, 财产, 委托人, 法律, 家庭  
+  This cluster focuses on **trust formation and legal protection** — revealing that Chinese HNWIs prioritize safe, compliant channels for family wealth preservation.
 
-**Conclusion**: This structured clustering confirms that Chinese HNWIs are not driven by a single reason to move assets offshore. Instead, their motivations form **a multi-layered ecosystem** — blending financial safety, global mobility, tax planning, and trusted advisory. Singapore is uniquely positioned as **a hub that satisfies all these needs simultaneously**.
+- 🟢 **Community 2: Client Services & Immigration Planning**  
+  **Keywords:** 服务, 客户, 需求, 移民, 规划, 顾问  
+  Keywords in this group emphasize **personalized service** and **immigration support**, suggesting a strong demand for advisory firms that handle cross-border lifestyle transitions.
+
+- 🔵 **Community 3: Cross-Border Finance & Taxation**  
+  **Keywords:** 香港, 税务, 投资, 减税, 账户  
+  This cluster connects financial mobility with **tax planning**, reflecting the appeal of Singapore's tax-friendly, globally integrated financial system.
+
+- 🔴 **Community 4: Personal Goals & Education**  
+  **Keywords:** 教育, 增长, 选择, 人生, 成为, 美国  
+  A more **aspirational** group centered on **self-actualization**, children’s education, and future planning — indicating wealth migration is also emotionally motivated.
+
+- 🟡 **Community 5: Risk, Ownership & Regulation**  
+  **Keywords:** 控制, 拥有, 风险, 境外, 规定  
+  This group reflects a desire for **control over offshore assets**, risk mitigation, and understanding of **regulatory frameworks**.
+
+- ⚪️ **Community 6: Strategic Execution & Industry Readiness**  
+  **Keywords:** 行业, 专业, 方案, 政策  
+  This cluster reflects **institutional and policy-level concerns**, including the importance of **qualified advisors**, **customized solutions**, and **regulatory guidance**.
+
+**Conclusion:**  
+This refined clustering confirms that Chinese HNWIs aren’t driven by a single reason to shift wealth offshore. Instead, they navigate a **multi-layered ecosystem** of motivations:
+
+- Legal trust and asset structuring  
+- Quality advisory and immigration logistics  
+- Tax optimization across borders  
+- Long-term family and lifestyle aspirations  
+- Risk control and asset sovereignty  
+- Strategic execution through industry experts  
+
+*Singapore is uniquely positioned as a comprehensive hub that aligns with all these complex needs — offering not just financial safety, but a full-stack platform for global wealth planning.*
+
 :::
 
 
