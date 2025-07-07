@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.55">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Zou Jiaxun">
+
+<title>Wealth Management</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./Picture/Logo1.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./Market.html"> 
+<span class="menu-text">Market Survey</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./Wealth_Managment.html" aria-current="page"> 
+<span class="menu-text">Wealth Management</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://twitter.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/Fnrion/RFM-Project">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://bugs.com">
+            Report a Bug
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#家业长青规划-evergreen-legacy-blueprint" id="toc-家业长青规划-evergreen-legacy-blueprint" class="nav-link active" data-scroll-target="#家业长青规划-evergreen-legacy-blueprint">《家业长青规划》 / “Evergreen Legacy Blueprint”</a>
+  <ul class="collapse">
+  <li><a href="#background-introduction" id="toc-background-introduction" class="nav-link" data-scroll-target="#background-introduction">Background Introduction</a></li>
+  </ul></li>
+  <li><a href="#brochure-1-wealth-management" id="toc-brochure-1-wealth-management" class="nav-link" data-scroll-target="#brochure-1-wealth-management">Brochure 1: Wealth Management</a>
+  <ul class="collapse">
+  <li><a href="#why-singapore" id="toc-why-singapore" class="nav-link" data-scroll-target="#why-singapore">Why Singapore?</a></li>
+  <li><a href="#solution-matrix" id="toc-solution-matrix" class="nav-link" data-scroll-target="#solution-matrix">Solution Matrix</a></li>
+  <li><a href="#value-proposition" id="toc-value-proposition" class="nav-link" data-scroll-target="#value-proposition">Value Proposition</a></li>
+  <li><a href="#market-context-highlight" id="toc-market-context-highlight" class="nav-link" data-scroll-target="#market-context-highlight">Market Context Highlight</a></li>
+  </ul></li>
+  <li><a href="#brochure-2-tax-optimization" id="toc-brochure-2-tax-optimization" class="nav-link" data-scroll-target="#brochure-2-tax-optimization">Brochure 2: Tax Optimization</a>
+  <ul class="collapse">
+  <li><a href="#why-tax-optimization-matters" id="toc-why-tax-optimization-matters" class="nav-link" data-scroll-target="#why-tax-optimization-matters">Why Tax Optimization Matters</a></li>
+  <li><a href="#tailored-solutions-at-a-glance" id="toc-tailored-solutions-at-a-glance" class="nav-link" data-scroll-target="#tailored-solutions-at-a-glance">Tailored Solutions at a Glance</a></li>
+  <li><a href="#our-professional-assurance" id="toc-our-professional-assurance" class="nav-link" data-scroll-target="#our-professional-assurance">Our Professional Assurance</a></li>
+  <li><a href="#market-insight" id="toc-market-insight" class="nav-link" data-scroll-target="#market-insight">Market Insight</a></li>
+  </ul></li>
+  <li><a href="#brochure-3-cross-border-legacy-planning" id="toc-brochure-3-cross-border-legacy-planning" class="nav-link" data-scroll-target="#brochure-3-cross-border-legacy-planning">Brochure 3: Cross-Border Legacy Planning</a>
+  <ul class="collapse">
+  <li><a href="#why-cross-border-legacy-planning-is-essential" id="toc-why-cross-border-legacy-planning-is-essential" class="nav-link" data-scroll-target="#why-cross-border-legacy-planning-is-essential">Why Cross-Border Legacy Planning Is Essential</a></li>
+  <li><a href="#singapores-legacy-planning-advantages" id="toc-singapores-legacy-planning-advantages" class="nav-link" data-scroll-target="#singapores-legacy-planning-advantages">Singapore’s Legacy Planning Advantages</a></li>
+  <li><a href="#tailored-legacy-solutions" id="toc-tailored-legacy-solutions" class="nav-link" data-scroll-target="#tailored-legacy-solutions">Tailored Legacy Solutions</a></li>
+  <li><a href="#culture-adapted-service-flow" id="toc-culture-adapted-service-flow" class="nav-link" data-scroll-target="#culture-adapted-service-flow">Culture-Adapted Service Flow</a></li>
+  <li><a href="#industry-insight" id="toc-industry-insight" class="nav-link" data-scroll-target="#industry-insight">Industry Insight</a></li>
+  </ul></li>
+  <li><a href="#brochure-4-personal-risk-management" id="toc-brochure-4-personal-risk-management" class="nav-link" data-scroll-target="#brochure-4-personal-risk-management">Brochure 4: Personal Risk Management</a>
+  <ul class="collapse">
+  <li><a href="#why-risk-management-matters" id="toc-why-risk-management-matters" class="nav-link" data-scroll-target="#why-risk-management-matters">Why Risk Management Matters</a></li>
+  <li><a href="#why-singapore-1" id="toc-why-singapore-1" class="nav-link" data-scroll-target="#why-singapore-1">Why Singapore?</a></li>
+  <li><a href="#tailored-protection-matrix" id="toc-tailored-protection-matrix" class="nav-link" data-scroll-target="#tailored-protection-matrix">Tailored Protection Matrix</a></li>
+  <li><a href="#family-centric-customization" id="toc-family-centric-customization" class="nav-link" data-scroll-target="#family-centric-customization">Family-Centric Customization</a></li>
+  <li><a href="#market-insight-1" id="toc-market-insight-1" class="nav-link" data-scroll-target="#market-insight-1">Market Insight</a></li>
+  </ul></li>
+  <li><a href="#brochure-5-cross-border-business-risk-management" id="toc-brochure-5-cross-border-business-risk-management" class="nav-link" data-scroll-target="#brochure-5-cross-border-business-risk-management">Brochure 5: Cross-Border Business Risk Management</a>
+  <ul class="collapse">
+  <li><a href="#why-business-risk-management-matters" id="toc-why-business-risk-management-matters" class="nav-link" data-scroll-target="#why-business-risk-management-matters">Why Business Risk Management Matters</a></li>
+  <li><a href="#why-singapore-2" id="toc-why-singapore-2" class="nav-link" data-scroll-target="#why-singapore-2">Why Singapore?</a></li>
+  <li><a href="#business-risk-management-matrix" id="toc-business-risk-management-matrix" class="nav-link" data-scroll-target="#business-risk-management-matrix">Business Risk Management Matrix</a></li>
+  <li><a href="#implementation-pathway" id="toc-implementation-pathway" class="nav-link" data-scroll-target="#implementation-pathway">Implementation Pathway</a></li>
+  <li><a href="#business-continuity-with-peace-of-mind" id="toc-business-continuity-with-peace-of-mind" class="nav-link" data-scroll-target="#business-continuity-with-peace-of-mind">Business Continuity with Peace of Mind</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Wealth Management</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Zou Jiaxun </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="家业长青规划-evergreen-legacy-blueprint" class="level2">
+<h2 class="anchored" data-anchor-id="家业长青规划-evergreen-legacy-blueprint">《家业长青规划》 / “Evergreen Legacy Blueprint”</h2>
+<section id="background-introduction" class="level3">
+<h3 class="anchored" data-anchor-id="background-introduction">Background Introduction</h3>
+<p>Chinese high-net-worth individuals (HNWIs) are increasingly transferring wealth to Singapore due to capital control tightening, global economic uncertainty, and growing demand for lifestyle and education migration. This case study draws from insights in our market research and highlights how Life Inc can offer personalized planning services to this segment.<br>
+</p>
+<p><em>随着资本管制趋严、全球经济不确定性上升，以及人们对生活方式与教育移民的关注增加，越来越多的中国高净值人士将财富转移到新加坡。本案例基于我们的市场研究，展示了Life Inc如何为该客群提供个性化的财富规划服务。</em></p>
+<p>Key trends include:</p>
+<ul>
+<li><strong>Trust &amp; Asset Protection</strong>: Setting up Singapore-based trusts for intergenerational planning<br>
+<em>信托与资产保护：设立新加坡信托，实现代际传承</em></li>
+<li><strong>Client Service &amp; Immigration</strong>: Using family offices and educational pathways for immigration<br>
+<em>客户服务与移民：通过家族办公室和教育路径实现移居</em></li>
+<li><strong>Cross-Border Tax Planning</strong>: Legally minimizing global tax burdens<br>
+<em>跨境税务筹划：合法降低全球税务负担</em></li>
+<li><strong>Lifestyle &amp; Education</strong>: Ensuring safety, comfort, and top education access for children<br>
+<em>生活方式与教育：为家庭带来安全、舒适与优质教育机会</em></li>
+</ul>
+<p>This project simulates a real-world interaction with a potential client like <a href="./User_Profile/Mr.Chen.html">Mr.&nbsp;Chen</a>, and aims to prepare advisers to engage with Chinese HNW clients in a culturally respectful and financially strategic way.<br>
+</p>
+<p><em>本项目模拟与潜在客户如<a href="./User_Profile/Mr.Chen.html">陈先生</a>的实际交流，旨在帮助顾问以尊重文化和具有财务战略性的方式与中国高净值客户建立联系。</em></p>
+<hr>
+</section>
+</section>
+<section id="brochure-1-wealth-management" class="level2">
+<h2 class="anchored" data-anchor-id="brochure-1-wealth-management">Brochure 1: Wealth Management</h2>
+<p><strong>Singapore Wealth Management Solutions for Cross-Border Families</strong><br>
+<em>新加坡跨境财富管理解决方案</em></p>
+<section id="why-singapore" class="level3">
+<h3 class="anchored" data-anchor-id="why-singapore">Why Singapore?</h3>
+<p>Singapore offers Chinese HNWIs three key advantages:<br>
+<em>新加坡为中国高净值人士提供三大核心优势：</em></p>
+<ul>
+<li><p><a href="https://www.longfinance.net/media/documents/GFCI_33_Report_2023.03.23_v1.1.pdf"><strong>Robust Legal Protection</strong></a> Trust structures in Singapore offer strong asset segregation, creditor shielding, and estate certainty—making it a top-tier jurisdiction for wealth protection.<br>
+<em>新加坡的信托结构具备优质的资产隔离、债务保护与稳定的遗产管理制度，是全球财富保护的核心地区之一。</em></p></li>
+<li><p><a href="https://www.iras.gov.sg/media/docs/default-source/e-tax/tax-treatment-of-gains-or-losses-from-the-sale-of-foreign-assets.pdf"><strong>Strategic Currency Management</strong></a> With SGD/USD/RMB multi-currency accounts and FX hedging solutions, Singapore supports effective cross-border asset growth under a low-tax framework.<br>
+<em>新加坡通过多币种账户与灵活的汇率对冲机制，为跨境资产配置提供税务友好的增长环境。</em></p></li>
+<li><p><a href="https://www.moe.gov.sg/news/press-releases/20231205-singapore-strong-showing-in-pisa-2022-affirms-resilience-of-education-system-through-covid-19-pandemic"><strong>Integrated Education-Wealth Planning</strong></a> Singapore consistently ranks among the world’s top education systems—enabling families to align children’s <a href="https://www.oecd.org/pisa/">education</a> with long-term wealth planning.<br>
+<em>新加坡长期在全球教育体系中处于领先地位，有助于家庭将子女教育目标与整体财富传承战略紧密结合。</em></p></li>
+</ul>
+</section>
+<section id="solution-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="solution-matrix">Solution Matrix</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Goal</th>
+<th>Strategy</th>
+<th>Benefit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Asset Preservation &amp; Growth / <em>资产保值增值</em></td>
+<td>Global diversified portfolio (40% equity / 30% bonds / 30% alternatives) / <em>全球多元配置（股票40% / 债券30% / 另类30%）</em></td>
+<td>6–8% annualized return with volatility &lt;12% / <em>年化6–8%回报，波动率&lt;12%</em></td>
+</tr>
+<tr class="even">
+<td>Child’s Education Fund / <em>子女教育资金</em></td>
+<td>Education trust + direct tuition payment architecture / <em>教育信托 + 学费直付架构</em></td>
+<td>Dedicated funding use, 4.5% tax-free return / <em>确保资金专用，享4.5%免税收益</em></td>
+</tr>
+<tr class="odd">
+<td>Retirement Planning / <em>退休规划</em></td>
+<td>CPF supplementation + REITs portfolio / <em>CPF补充计划 + REITs组合</em></td>
+<td>5–7% dividend income, capital gains tax-free / <em>年派息5–7%，免资本利得税</em></td>
+</tr>
+<tr class="even">
+<td>Cross‑Border Asset Migration / <em>资产跨境转移</em></td>
+<td><a href="https://www.mas.gov.sg/publications/consultations/2023/consultation-paper-on-proposed-framework-for-single-family-offices">Family office setup (min. S$5M)</a> / <em>家族办公室设立（最低500万新币）</em></td>
+<td>Compliant setup in ~3 months under MAS framework / <em>依据金管局架构，三个月内完成合规设立</em></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="value-proposition" class="level3">
+<h3 class="anchored" data-anchor-id="value-proposition">Value Proposition</h3>
+<p><strong>For Chinese Entrepreneurs</strong><br>
+<em>面向中国企业家的专属解决方案：</em></p>
+<ul>
+<li><p>We understand your desire to retain control — all structures are designed with decision-making authority in your hands<br>
+<em>我们理解您对资产控制权的重视，所有方案均保留客户投资决策权</em></p></li>
+<li><p>Transparent “mainland main account + Singapore sub-account” framework for cash flow clarity<br>
+<em>采用“中国主账户 + 新加坡子账户”模式，资金流向透明可控</em></p></li>
+<li><p>Monthly Chinese-language reports with quarterly bilingual reviews (available in Shenzhen or Singapore)<br>
+<em>每月中文报告，季度面对面回顾（支持深圳 / 新加坡双地会议）</em></p></li>
+</ul>
+</section>
+<section id="market-context-highlight" class="level3">
+<h3 class="anchored" data-anchor-id="market-context-highlight">Market Context Highlight</h3>
+<p>As highlighted in <a href="https://www.bain.cn/reports/2023-china-private-wealth-report.pdf">Bain &amp; Company’s China Private Wealth Report 2023</a>,<br>
+Chinese HNWIs are increasingly allocating assets overseas for diversification, succession, and education—making Singapore a preferred Asian destination.<br>
+<em>中国高净值人群加快资产全球化配置，重点关注多元投资、代际传承与子女教育，使新加坡成为亚太核心选择。</em></p>
+<hr>
+</section>
+</section>
+<section id="brochure-2-tax-optimization" class="level2">
+<h2 class="anchored" data-anchor-id="brochure-2-tax-optimization">Brochure 2: Tax Optimization</h2>
+<p><strong>Compliant Cross-Border Tax Structures: A Pillar of HNWI Wealth Management</strong><br>
+<em>合规跨境税务架构：高净值家庭财富管理关键一环</em></p>
+<section id="why-tax-optimization-matters" class="level3">
+<h3 class="anchored" data-anchor-id="why-tax-optimization-matters">Why Tax Optimization Matters</h3>
+<p>For HNW families with global footprints, tax planning plays a decisive role in long-term capital preservation. Singapore’s transparent tax regime, supported by favorable international agreements and domestic laws, positions it as a preferred base for cross-border wealth.</p>
+<p><em>对于拥有全球资产的高净值家庭而言，税务规划直接影响财富的保值与传承。新加坡凭借其透明、优渥的税收体系，成为海外财富配置的重要枢纽。</em></p>
+<p>Key features include:</p>
+<ul>
+<li><p><strong>No Capital Gains Tax</strong><br>
+Investment gains on equities and real estate are not taxed under Singapore’s <a href="https://www.iras.gov.sg/media/docs/default-source/e-tax/tax-treatment-of-gains-or-losses-from-the-sale-of-foreign-assets.pdf">foreign asset disposal guidelines</a>.<br>
+<em>根据新加坡税务局的处理规则，股票与房产等海外资产的收益可享免税待遇。</em></p></li>
+<li><p><strong>No Estate Duty</strong><br>
+Assets can be transferred without inheritance tax obligations.<br>
+<em>遗产无需缴纳额外税负，有助于实现家族代际传承目标。</em></p></li>
+<li><p><strong>Attractive Personal &amp; Corporate Rates</strong><br>
+Singapore maintains a <a href="https://www.iras.gov.sg/taxes/corporate-income-tax/corporate-income-tax-rates">flat corporate income tax rate of 17%</a>, and progressive personal rates capped at 22%.<br>
+<em>企业税为17%，个人所得税最高为22%，为高净值人士提供灵活空间。</em></p></li>
+<li><p><strong>Global Network of DTAs</strong><br>
+With 93 <a href="https://www.chinatax.gov.cn/n810341/n810755/c1195966/content.html">Double Tax Agreements (DTAs)</a>, including with China, Singapore facilitates tax coordination across jurisdictions.<br>
+<em>通过覆盖中国、欧美等主要经济体的双边税收协定，降低重复征税风险。</em></p></li>
+</ul>
+</section>
+<section id="tailored-solutions-at-a-glance" class="level3">
+<h3 class="anchored" data-anchor-id="tailored-solutions-at-a-glance">Tailored Solutions at a Glance</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Scenario / <em>应用场景</em></th>
+<th>Strategy / <em>解决方案</em></th>
+<th>Legal Basis / <em>法律依据</em></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Equity transfer in China business / <em>中国企业股权转让</em></td>
+<td>Singapore holding structure / <em>新加坡控股公司架构</em></td>
+<td><a href="https://www.chinatax.gov.cn/n810341/n810755/c1195966/content.html">Article 13 of China–Singapore DTA / <em>中新税收协定第13条</em></a></td>
+</tr>
+<tr class="even">
+<td>Family wealth governance / <em>家族资产管理</em></td>
+<td>Family Office structure (13O / 13U) / <em>家族办公室架构（13O / 13U）</em></td>
+<td><a href="https://www.mas.gov.sg/publications/consultations/2023/consultation-paper-on-proposed-framework-for-single-family-offices">MAS SFO Guidelines / <em>新加坡金管局监管指引</em></a></td>
+</tr>
+<tr class="odd">
+<td>Education funding abroad / <em>子女海外教育</em></td>
+<td>Education trust + insurance bundle / <em>教育信托 + 保险组合</em></td>
+<td><a href="https://sso.agc.gov.sg/Act/TTA2004">Singapore Trusts Act Ch.4 / <em>新加坡信托法第4章</em></a></td>
+</tr>
+<tr class="even">
+<td>Retirement income planning / <em>退休储备规划</em></td>
+<td>Annuity + REIT portfolio / <em>年金 + REITs组合</em></td>
+<td><a href="https://sso.agc.gov.sg/Act/ITA1947">Section 10(1)(g) of Income Tax Act / <em>所得税法第10(1)(g)条</em></a></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="our-professional-assurance" class="level3">
+<h3 class="anchored" data-anchor-id="our-professional-assurance">Our Professional Assurance</h3>
+<ul>
+<li><p><strong>Dual-Jurisdiction Compliance</strong><br>
+We help ensure that your planning meets both Chinese foreign exchange rules and evolving Singapore tax codes, in line with <a href="https://www.oecd.org/tax/beps/">OECD’s anti-avoidance standards</a>.<br>
+<em>同步符合中国外汇规定与新加坡合规要求，紧跟OECD反避税国际标准。</em></p></li>
+<li><p><strong>Licensed, Trusted Experts</strong><br>
+Solutions are designed by Singapore Chartered Accountants (ISCA) and reviewed by locally licensed legal counsel.<br>
+<em>方案设计由ISCA注册会计师主导，本地律师出具合规法律意见。</em></p></li>
+<li><p><strong>Data Privacy &amp; Client Discretion</strong><br>
+With encrypted communication and optional single-point liaison, your information stays protected and confidential.<br>
+<em>采用银行级数据加密技术，支持单线沟通模式，全程保障客户隐私。</em></p></li>
+</ul>
+</section>
+<section id="market-insight" class="level3">
+<h3 class="anchored" data-anchor-id="market-insight">Market Insight</h3>
+<p>According to <a href="https://www.bain.cn/reports/2023-china-private-wealth-report.pdf">Bain &amp; Company’s 2023 China Private Wealth Report</a>, tax efficiency, compliance, and intergenerational transfer remain the top drivers for Chinese HNW families considering overseas wealth platforms.<br>
+<em>贝恩《2023中国私人财富报告》指出，税务效率、合规性与家族传承需求，是高净值人士设立海外资产架构的主要动因。</em></p>
+<hr>
+</section>
+</section>
+<section id="brochure-3-cross-border-legacy-planning" class="level2">
+<h2 class="anchored" data-anchor-id="brochure-3-cross-border-legacy-planning">Brochure 3: Cross-Border Legacy Planning</h2>
+<p><strong>Family Legacy Preservation: Multi-Generational Wealth Transfer Strategies</strong><br>
+<em>家族财富传承：构建跨代资产保护架构</em></p>
+<section id="why-cross-border-legacy-planning-is-essential" class="level3">
+<h3 class="anchored" data-anchor-id="why-cross-border-legacy-planning-is-essential">Why Cross-Border Legacy Planning Is Essential</h3>
+<p><em>为什么需要专业传承规划？</em></p>
+<p>Families with global assets face three core risks in succession planning, as highlighted by the <a href="https://www.lawsociety.org.sg/publications/newsletter/issue-02-2023/trusts-and-estate-planning/">Law Society of Singapore (2023)</a>:<br>
+<em>根据<a href="https://www.lawsociety.org.sg/publications/newsletter/issue-02-2023/trusts-and-estate-planning/">新加坡法律学会 2023 年</a>分析，跨境资产传承主要面临以下三大挑战：</em></p>
+<ul>
+<li><p><strong>Legal Conflict Across Jurisdictions</strong><br>
+Inconsistent inheritance laws between countries can delay or disrupt asset distribution.<br>
+<em>不同司法辖区继承法差异大，可能导致资产分配延误或冲突。</em></p></li>
+<li><p><strong>Tax Exposure Risks</strong><br>
+Inheritance and gift taxes in certain regions can significantly erode wealth.<br>
+<em>遗产税和赠与税可能侵蚀资产价值，影响传承效率。</em></p></li>
+<li><p><strong>Execution Uncertainty</strong><br>
+Probate and court delays make timely implementation challenging.<br>
+<em>遗嘱认证程序复杂且耗时，增加资产传承不确定性。</em></p></li>
+</ul>
+</section>
+<section id="singapores-legacy-planning-advantages" class="level3">
+<h3 class="anchored" data-anchor-id="singapores-legacy-planning-advantages">Singapore’s Legacy Planning Advantages</h3>
+<p><em>新加坡传承工具优势</em></p>
+<ul>
+<li><p><strong>No Estate Duty</strong><br>
+Assets can pass without estate tax under <a href="https://www.iras.gov.sg/taxes/others/estate-duty">Singapore’s tax code</a>.<br>
+<em>资产可免遗产税传承，降低税务负担（<a href="https://www.iras.gov.sg/taxes/others/estate-duty">IRAS 官方指引</a>）。</em></p></li>
+<li><p><strong>Robust Trust Law Framework</strong><br>
+Ranked top 3 globally for trust jurisdictions, per the <a href="https://www.step.org/global-family-office-report-2023">STEP Global Report 2023</a>.<br>
+<em>根据<a href="https://www.step.org/global-family-office-report-2023">STEP 2023 全球信托评估报告</a>，新加坡信托法制完备，全球排名前三。</em></p></li>
+<li><p><strong>Bilingual Documentation Support</strong><br>
+Legal documentation available in both Mandarin and English, ensuring family understanding.<br>
+<em>支持中英双语法律文件，提高跨代沟通效率。</em></p></li>
+</ul>
+</section>
+<section id="tailored-legacy-solutions" class="level3">
+<h3 class="anchored" data-anchor-id="tailored-legacy-solutions">Tailored Legacy Solutions</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Legacy Goal / <em>传承目标</em></th>
+<th>Professional Strategy / <em>专业解决方案</em></th>
+<th>Legal Framework / <em>法律依据</em></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Child welfare and control / <em>子女权益保障</em></td>
+<td>Education trust with living allowance terms / <em>教育信托 + 生活津贴条款</em></td>
+<td><a href="https://sso.agc.gov.sg/Act/TTA2004">Singapore Trusts Act, Ch.4</a> / <em>新加坡信托法第4章</em></td>
+</tr>
+<tr class="even">
+<td>Preventing family disputes / <em>避免家族纠纷</em></td>
+<td>Testamentary will with family council mechanism / <em>遗嘱 + 家族理事会机制</em></td>
+<td><a href="https://sso.agc.gov.sg/Act/PAA1934">Probate and Administration Act, Sec.10</a> / <em>遗嘱认证法第10条</em></td>
+</tr>
+<tr class="odd">
+<td>Multi-jurisdiction asset governance / <em>跨境资产管理</em></td>
+<td>Main trust + territorial sub-trusts (VCC wrapper) / <em>主信托 + 属地子信托（可变资本公司结构）</em></td>
+<td><a href="https://sso.agc.gov.sg/Act/VCC2018">Variable Capital Companies Act</a> / <em>新加坡可变资本公司法</em></td>
+</tr>
+<tr class="even">
+<td>Retaining influence without interference / <em>灵活控制权安排</em></td>
+<td>Protector roles + reserved power clauses / <em>保护人制度 + 保留权力条款</em></td>
+<td><a href="https://www.mas.gov.sg/news/speeches/2021/trust-companies-amendment-bill">Trust Companies (Amendment) Bill 2021</a> / <em>信托公司法修正案</em></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="culture-adapted-service-flow" class="level3">
+<h3 class="anchored" data-anchor-id="culture-adapted-service-flow">Culture-Adapted Service Flow</h3>
+<p><em>文化适配服务流程</em></p>
+<ul>
+<li><p><strong>Phased Family Consultation</strong></p>
+<ul>
+<li><em>Phase 1</em>: Family governance structuring<br>
+<em>第一阶段：设计“家族治理”整体框架</em><br>
+</li>
+<li><em>Phase 2</em>: Asset allocation &amp; implementation<br>
+<em>第二阶段：细化分配方案与执行机制</em></li>
+</ul></li>
+<li><p><strong>Legacy Charter Support</strong><br>
+Support drafting of a family constitution with Chinese-style values.<br>
+<em>可协助起草家族宪章，保留传统文化如“家训条款”。</em></p></li>
+<li><p><strong>Privacy &amp; Confidentiality</strong></p>
+<ul>
+<li>Dedicated single-family-office (SFO) mode<br>
+</li>
+<li>Encrypted digital inheritance systems<br>
+<em>支持单一家族办公室运作，搭配加密数字遗产管理工具，保障信息安全。</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="industry-insight" class="level3">
+<h3 class="anchored" data-anchor-id="industry-insight">Industry Insight</h3>
+<p>Cross-border legacy structures are rapidly becoming standard among HNWIs.<br>
+The <a href="https://www.ubs.com/global/en/family-office/reports/global-family-office-report.html">UBS Global Family Office Report</a> shows that over 60% of family offices now include multi-jurisdictional estate planning.<br>
+<em>据<a href="https://www.ubs.com/global/en/family-office/reports/global-family-office-report.html">瑞银全球家族办公室报告</a>，超过六成家族办公室已纳入跨境传承机制，逐步成为行业标准。</em></p>
+<hr>
+</section>
+</section>
+<section id="brochure-4-personal-risk-management" class="level2">
+<h2 class="anchored" data-anchor-id="brochure-4-personal-risk-management">Brochure 4: Personal Risk Management</h2>
+<p><strong>Global Risk Management Solutions for Cross-Border HNW Families</strong> <em>全面风险保障：守护跨境高净值家庭的每一程</em></p>
+<section id="why-risk-management-matters" class="level3">
+<h3 class="anchored" data-anchor-id="why-risk-management-matters">Why Risk Management Matters</h3>
+<p><em>风险管理为何至关重要？</em></p>
+<p>For globally mobile Chinese HNWIs, conventional protection tools often fall short. Risks are not only financial but also span health, travel, education, and lifestyle disruptions. According to <a href="https://www.swissre.com/institute/research/topics-and-risk-dialogues/overview-insurance.html">Swiss Re’s 2023 Global Insurance Report</a>, international travelers face 47% higher exposure to medical and accident-related emergencies. <em>对于全球流动的中国高净值家庭而言，传统的保障工具难以满足其多维风险需求。瑞士再保险《2023全球保险报告》指出，国际旅客面临的健康与意外风险高出普通人群47%。</em></p>
+<p>Moreover, medical tourism for critical illness treatment averages USD 280,000 per episode, while education interruptions can result in over USD 1.2M of lost lifetime income. These figures underscore the importance of holistic, international coverage. <em>重大疾病跨境治疗平均花费高达28万美元，子女教育中断可能导致超过120万美元的终身收入损失，凸显出高净值家庭对全球化保障架构的强烈需求。</em></p>
+</section>
+<section id="why-singapore-1" class="level3">
+<h3 class="anchored" data-anchor-id="why-singapore-1">Why Singapore?</h3>
+<p>Singapore offers one of Asia’s most advanced insurance markets, hosting over 20 international insurers—including Prudential, AIA, and Manulife—as regional headquarters. It supports high-net-worth solutions in USD and SGD to hedge FX volatility and access to a premium medical provider network spanning over 1,200 global hospitals. <em>新加坡拥有亚洲最成熟的保险生态之一，超过20家国际保险机构（如保诚、友邦、人寿）在此设立总部。提供美元/新币双币种保单，可规避汇率风险，并接入涵盖全球1,200余家顶级医院的高端医疗服务网络。</em></p>
+</section>
+<section id="tailored-protection-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="tailored-protection-matrix">Tailored Protection Matrix</h3>
+<p><em>定制化风险保障方案</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 36%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Risk Type / <em>风险类型</em></th>
+<th>Solution / <em>专业解决方案</em></th>
+<th>Coverage / <em>保障范围</em></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Critical Illness / <em>重大健康风险</em></td>
+<td>International Health Plan + Second Opinion / <em>高端医疗险 + 二次诊疗</em></td>
+<td>Global direct billing, including proton therapy / <em>全球直付，包含质子治疗</em></td>
+</tr>
+<tr class="even">
+<td>Accidental Death / <em>意外身故风险</em></td>
+<td>Global Life + Emergency Assistance / <em>全球寿险 + 紧急救援</em></td>
+<td>Up to USD 5M coverage, including repatriation / <em>最高500万美元保额，含遗体转运</em></td>
+</tr>
+<tr class="odd">
+<td>Income Interruption / <em>收入中断风险</em></td>
+<td>Disability Income + Career Rehab / <em>失能收入险 + 职业重建服务</em></td>
+<td>Monthly payout until age 65 / <em>每月赔付至65岁</em></td>
+</tr>
+<tr class="even">
+<td>Education Disruption / <em>教育保障风险</em></td>
+<td>Education Endowment + Contingency Trust / <em>教育年金 + 应急信托</em></td>
+<td>Tuition + emergency reserve for dependents / <em>学费保障 + 子女备用金安排</em></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="family-centric-customization" class="level3">
+<h3 class="anchored" data-anchor-id="family-centric-customization">Family-Centric Customization</h3>
+<p><em>文化适配服务特色</em></p>
+<ul>
+<li><p><strong>Privacy-First Architecture</strong> Each HNWI family is served under a single relationship manager model with encrypted <a href="https://www.mas.gov.sg/regulation/Acts/Insurance-Act">policy administration platforms</a>. <em>采用单一客户经理制度，保障客户隐私；配套加密数字化保单管理系统。</em></p></li>
+<li><p><strong>Bilingual Family Planning</strong> Every policy is explained and delivered with Chinese-English legal documents and optional <a href="https://www.limra.com/en/research/2022/international-insurance-benefits-report/">family meetings</a> to involve heirs. <em>支持中英双语法律文件及家庭会议，让继承人更早参与保障规划。</em></p></li>
+<li><p><strong>Staged Implementation</strong> Phase 1 covers medical and accident risks; Phase 2 integrates life and trust structures for long-term preservation. <em>第一阶段聚焦医疗与意外风险覆盖，第二阶段纳入寿险与信托等长期保障机制，实现财富安全传承。</em></p></li>
+</ul>
+</section>
+<section id="market-insight-1" class="level3">
+<h3 class="anchored" data-anchor-id="market-insight-1">Market Insight</h3>
+<p>According to <a href="https://www.ubs.com/global/en/wealth-management/global-family-office-report.html">UBS Global Education Report</a>, Chinese HNW families increasingly prioritize education continuity and health resilience when planning abroad. Insurance-driven risk management is becoming core to family governance. <em>瑞银《全球家族办公室报告》指出，中国高净值家庭在进行海外规划时愈发重视教育连续性与健康安全，保险型风险管理正逐步成为家族治理的核心板块。</em></p>
+</section>
+</section>
+<section id="brochure-5-cross-border-business-risk-management" class="level2">
+<h2 class="anchored" data-anchor-id="brochure-5-cross-border-business-risk-management">Brochure 5: Cross-Border Business Risk Management</h2>
+<p><strong>Sustainable Business Protection: Cross-Border Risk Mitigation Strategies</strong><br>
+<em>企业永续经营保障：构建跨境业务安全体系</em></p>
+<hr>
+<section id="why-business-risk-management-matters" class="level3">
+<h3 class="anchored" data-anchor-id="why-business-risk-management-matters">Why Business Risk Management Matters</h3>
+<p>Even the most successful businesses can be caught off guard by unexpected risks—especially when operating across borders. According to <a href="https://www.mckinsey.com/capabilities/risk-and-resilience/our-insights/global-risk-survey-2023">McKinsey’s 2023 Global Business Risk Survey</a>, companies in Asia-Pacific reported average losses equivalent to <strong>9.2% of annual revenue</strong> due to risk events. Businesses without a succession plan saw valuation drops of up to <strong>30%</strong>, while <strong>cross-border compliance costs have increased 15% per year</strong>.</p>
+<blockquote class="blockquote">
+<p>即便是最成功的企业，也可能在跨境经营中被突发风险打乱节奏。根据<a href="https://www.mckinsey.com/capabilities/risk-and-resilience/our-insights/global-risk-survey-2023">麦肯锡《2023全球企业风险调研》</a>，亚太区企业因风险事件平均损失达年营收的9.2%，缺乏接班规划的企业估值折损高达30%，而跨境合规成本每年增长15%。</p>
+</blockquote>
+<hr>
+</section>
+<section id="why-singapore-2" class="level3">
+<h3 class="anchored" data-anchor-id="why-singapore-2">Why Singapore?</h3>
+<p>Singapore is a premier base for global business risk management:</p>
+<ul>
+<li><a href="https://www.doingbusiness.org/en/rankings"><strong>#2 globally for Ease of Doing Business</strong></a> – World Bank 2024<br>
+</li>
+<li><a href="https://www3.weforum.org/docs/WEF_TheGlobalCompetitivenessReport2020.pdf"><strong>#1 globally for Contract Enforcement</strong></a> – World Economic Forum<br>
+</li>
+<li><a href="https://home.kpmg/sg/en/home/about/overview/our-offices.html"><strong>Asia-Pacific HQs for Big Four and top law firms</strong></a></li>
+</ul>
+<blockquote class="blockquote">
+<p>新加坡是全球企业风险管理的优选平台：<br>
+- <a href="https://www.doingbusiness.org/en/rankings"><strong>营商便利度全球第2</strong></a>：世界银行《2024营商环境报告》<br>
+- <a href="https://www3.weforum.org/docs/WEF_TheGlobalCompetitivenessReport2020.pdf"><strong>合同执行效率全球第1</strong></a>：世界经济论坛<br>
+- <a href="https://home.kpmg/sg/en/home/about/overview/our-offices.html"><strong>四大会计师事务所及国际律所亚太总部所在地</strong></a></p>
+</blockquote>
+</section>
+<section id="business-risk-management-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="business-risk-management-matrix">Business Risk Management Matrix</h3>
+<div class="table striped hover" data-caption="Comprehensive Risk Management Strategies">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Risk Type / 风险类型</th>
+<th>Strategy / 专业解决方案</th>
+<th>Effect / 实施效果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Key Executive Risk<br><em>关键人物风险</em></td>
+<td>Key-man insurance + emergency decision team<br><em>高管保险 + 应急决策委员会</em></td>
+<td>180 days operational continuity<br><em>保障180天运营连续性</em></td>
+</tr>
+<tr class="even">
+<td>Succession Planning Risk<br><em>接班规划风险</em></td>
+<td>Equity trust + grooming plan<br><em>股权信托 + 接班人培养计划</em></td>
+<td>Smooth 5-year transition<br><em>实现5年平稳交接</em></td>
+</tr>
+<tr class="odd">
+<td>Cross-Border Compliance Risk<br><em>跨境合规风险</em></td>
+<td><a href="https://www.acra.gov.sg/">Dual-jurisdiction legal audit</a><br><em>双法域合规审查</em></td>
+<td>Reduce violation risk by 85%<br><em>降低85%违规风险</em></td>
+</tr>
+<tr class="even">
+<td>Reputation &amp; Media Crisis<br><em>声誉危机风险</em></td>
+<td>Crisis fund + PR playbook<br><em>品牌修复基金 + 媒体应对预案</em></td>
+<td>Respond in under 24 hours<br><em>响应时间&lt;24小时&gt;</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="implementation-pathway" class="level3">
+<h3 class="anchored" data-anchor-id="implementation-pathway">Implementation Pathway</h3>
+<p><strong>Three-stage culturally adaptive model for sustainable protection</strong><br>
+<em>实施路径采用三阶段文化适配模型：</em></p>
+<section id="diagnosis-phase-诊断阶段24周" class="level4">
+<h4 class="anchored" data-anchor-id="diagnosis-phase-诊断阶段24周">Diagnosis Phase / 诊断阶段（2–4周）</h4>
+<ul>
+<li>Risk assessment across 20 dimensions<br>
+</li>
+<li>In-depth interviews with key family stakeholders</li>
+</ul>
+<blockquote class="blockquote">
+<p>企业健康度评估（含20项风险维度）<br>
+家族成员深度访谈</p>
+</blockquote>
+</section>
+<section id="planning-phase-规划阶段46周" class="level4">
+<h4 class="anchored" data-anchor-id="planning-phase-规划阶段46周">Planning Phase / 规划阶段（4–6周）</h4>
+<ul>
+<li>Bilingual proposal walkthroughs<br>
+</li>
+<li><a href="https://www.singaporelawwatch.sg/About-Singapore-Law">Dual-legal review from China &amp; Singapore</a></li>
+</ul>
+<blockquote class="blockquote">
+<p>中英双语方案演示<br>
+中/新两地律师联合审阅</p>
+</blockquote>
+</section>
+<section id="execution-phase-实施阶段定制" class="level4">
+<h4 class="anchored" data-anchor-id="execution-phase-实施阶段定制">Execution Phase / 实施阶段（定制）</h4>
+<ul>
+<li>Step-by-step implementation roadmap<br>
+</li>
+<li>Quarterly risk monitoring and review</li>
+</ul>
+<blockquote class="blockquote">
+<p>分步骤执行路线图<br>
+季度风险复查机制</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="business-continuity-with-peace-of-mind" class="level3">
+<h3 class="anchored" data-anchor-id="business-continuity-with-peace-of-mind">Business Continuity with Peace of Mind</h3>
+<p>With Singapore’s world-class legal infrastructure and expert network, we help ensure operational continuity, leadership readiness, and long-term legacy preservation for globally ambitious businesses.</p>
+<blockquote class="blockquote">
+<p>通过新加坡成熟的法律环境与专业机构网络，我们帮助跨境企业打造稳健风险应对体系，不仅保障运营稳定，更为传承与估值增值奠定基础。</p>
+</blockquote>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

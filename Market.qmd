@@ -817,7 +817,6 @@ Refine **survey instruments** to probe **latent motivations** (e.g. fear of inst
 > Include a ranking question:  
 > “Which matters more to you in choosing a jurisdiction for your family’s assets?”  
 > (Options: Political stability / Education system / Inheritance clarity / Low tax burden)  
-> → Each option maps to a keyword community in your analysis.
 
 ---
 

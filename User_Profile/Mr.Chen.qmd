@@ -1,0 +1,30 @@
+---
+title: "Mr.Chen"
+author: "Zou Jiaxun"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: false
+  cache: false
+format:
+  html:
+    code-fold: true
+    code-summary: "Click to view code"
+---
+
+### User Portrait 
+
+### Mr. Chen
+
+| Attribute | Details |
+|:-------------------------------------|:---------------------------------|
+| **Name** | Mr. Chen / *陈先生* |
+| **Age** | 50 years old / *50岁* |
+| **Location** | Shenzhen, China / *中国深圳* |
+| **Occupation** | SME Business Owner / *中小企业主* |
+| **Net Worth** | Approx. USD 5 million / *约500万美元* |
+| **Family** | Married, one son (16 years old) / *已婚，有一名16岁儿子* |
+| **Goals** | Retire in Singapore; son's education in SG; protect and grow assets / *退休到新加坡；儿子在新加坡接受教育；保护并增值财富* |
+| **Challenges** | Regulatory unfamiliarity; privacy; overseas asset transfer / *对海外法规不熟悉；重视隐私；跨境资产转移复杂* |
+| **Values** | Legacy, reputation, education, caution / *重视传承、声誉、教育，做事谨慎* |

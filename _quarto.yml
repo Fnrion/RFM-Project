@@ -9,7 +9,7 @@ website:
       - text: "Market Survey"
         href: "Market.qmd"
       - text: "Wealth Management"
-        href: "Wealth Management.qmd"
+        href: "Wealth_Managment.qmd"
       
     right:
       - about.qmd
