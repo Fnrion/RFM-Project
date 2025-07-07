@@ -596,26 +596,50 @@ import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 import networkx as nx
 
-# 手动设置中文字体（可替换为你机器已有的其他中文字体路径）
+# 中文字体设置
 my_font = fm.FontProperties(fname="/System/Library/Fonts/STHeiti Medium.ttc")
 plt.rcParams['font.family'] = my_font.get_name()
 plt.rcParams['axes.unicode_minus'] = False
 
-# 构建图（你需要已经准备好 co_occurrence 字典）
-G = nx.Graph()
+# 构建完整图
+G_full = nx.Graph()
 for (w1, w2), freq in co_occurrence.items():
-    if freq >= 3:  # 设定共现阈值
-        G.add_edge(w1, w2, weight=freq)
+    if freq >= 3:
+        G_full.add_edge(w1, w2, weight=freq)
 
-# 可视化绘图
+# 按度数排序，获取前20个高连接度的节点
+top_nodes = sorted(G_full.degree, key=lambda x: x[1], reverse=True)[:10]
+top_node_names = set(node for node, _ in top_nodes)
+
+# 创建子图：只包含前20个节点及其相连边
+G = G_full.subgraph(top_node_names).copy()
+
+# 可视化准备
+pos = nx.spring_layout(G, k=0.8, seed=42)
+degrees = dict(G.degree())
+node_colors = [degrees[node] for node in G.nodes()]
+node_sizes = [v * 40 for v in degrees.values()]  # 适度放大
+
+# 绘图
 plt.figure(figsize=(12, 10))
-pos = nx.spring_layout(G, k=0.5, seed=42)  # 节点布局
-nx.draw_networkx_nodes(G, pos, node_size=500, node_color='lightblue')
-nx.draw_networkx_edges(G, pos, width=[d['weight'] * 0.3 for _, _, d in G.edges(data=True)], alpha=0.6)
-nx.draw_networkx_labels(G, pos, font_size=10, font_family=my_font.get_name())
+nx.draw_networkx_nodes(G, pos,
+                       node_size=node_sizes,
+                       node_color=node_colors,
+                       cmap=plt.cm.Blues,
+                       edgecolors='white',
+                       linewidths=0.8)
 
-plt.title("Top 100 中文关键词共现网络", fontproperties=my_font)
-plt.axis("off")
+nx.draw_networkx_edges(G, pos,
+                       width=[d['weight'] * 0.3 for _, _, d in G.edges(data=True)],
+                       edge_color='gray',
+                       alpha=0.5)
+
+nx.draw_networkx_labels(G, pos,
+                        font_size=12,
+                        font_family=my_font.get_name())
+
+plt.title("Top 20 中文关键词共现网络", fontsize=18, fontproperties=my_font, pad=20, weight='bold')
+plt.axis('off')
 plt.tight_layout()
 plt.show()
 ```
