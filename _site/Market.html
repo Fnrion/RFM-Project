@@ -276,7 +276,7 @@ Why choose spider instead of survey
 <section id="implementation-building-the-spider" class="level2">
 <h2 class="anchored" data-anchor-id="implementation-building-the-spider">Implementation: Building the Spider</h2>
 <p>We implemented a Python-based web crawler using the SerpAPI platform to scrape real-time search results. The following code initializes the necessary libraries and parameters used in the process.</p>
-<div id="7954a680" class="cell" data-execution_count="2">
+<div id="ecf98cea" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
@@ -298,7 +298,7 @@ Why choose spider instead of survey
 <section id="targeted-search-keywords" class="level2">
 <h2 class="anchored" data-anchor-id="targeted-search-keywords">Targeted Search Keywords</h2>
 <p>The keywords used by the crawler are carefully chosen to reflect real user concerns about wealth migration. These terms guide the spider to relevant discussions, articles, and posts.</p>
-<div id="2d6356fb" class="cell" data-execution_count="3">
+<div id="540fed03" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>keywords <span class="op">=</span> [</span>
@@ -313,7 +313,7 @@ Why choose spider instead of survey
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="13390b51" class="cell" data-execution_count="4">
+<div id="6545be23" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> serpapi_search(query, api_key, num<span class="op">=</span><span class="dv">20</span>, start<span class="op">=</span><span class="dv">0</span>):</span>
@@ -352,7 +352,7 @@ Why choose spider instead of survey
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> extracted_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="d751cba0" class="cell" data-execution_count="5">
+<div id="54e0104a" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> search_keyword_with_pagination(keyword, api_key, total_results<span class="op">=</span><span class="dv">20</span>):</span>
@@ -374,7 +374,7 @@ Why choose spider instead of survey
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> all_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="80080f6a" class="cell" data-execution_count="6">
+<div id="b6ac34bf" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
@@ -407,7 +407,7 @@ Why choose spider instead of survey
 <section id="data-collection-process" class="level2">
 <h2 class="anchored" data-anchor-id="data-collection-process">Data Collection Process</h2>
 <p>The crawler iterates through each keyword, sends queries to SerpAPI, extracts content (including titles, URLs, and full texts), and saves them into a structured format for further processing. This automation ensures scalability and coverage.</p>
-<div id="79b0a5e5" class="cell" data-execution_count="7">
+<div id="16e30347" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> search_results:</span>
@@ -451,7 +451,7 @@ Why choose spider instead of survey
 <section id="data-transformation" class="level2">
 <h2 class="anchored" data-anchor-id="data-transformation">Data Transformation</h2>
 <p>Once raw JSON responses are collected, we convert them into a tabular format using <code>pandas</code>. This step prepares the dataset for text cleaning and analysis.</p>
-<div id="13eb1ace" class="cell" data-execution_count="8">
+<div id="5ebc373a" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
@@ -490,7 +490,7 @@ Why choose spider instead of survey
 </section>
 <section id="data-clean" class="level2">
 <h2 class="anchored" data-anchor-id="data-clean"><strong>1.3 Data Clean</strong></h2>
-<div id="d5a90fa7" class="cell" data-execution_count="9">
+<div id="fc9c1de6" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 输入输出路径</span></span>
@@ -531,7 +531,7 @@ Why choose spider instead of survey
 <pre><code>清洗完成，已保存为：/Applications/SMU/Great Eastern/Personal Project/RFM Project/Dataset/search_results_cleaned.xlsx</code></pre>
 </div>
 </div>
-<div id="80722ba9" class="cell" data-execution_count="10">
+<div id="cca8ec88" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取 Excel 文件</span></span>
@@ -596,7 +596,7 @@ invalid             0
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="a3b3e205" class="cell" data-execution_count="11">
+<div id="724ea60c" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_cleaned <span class="op">=</span> df[<span class="op">~</span>df[<span class="st">"invalid"</span>] <span class="op">&amp;</span> df[<span class="st">"content"</span>].notna()].copy()</span>
@@ -607,7 +607,7 @@ dtype: int64</code></pre>
 <section id="text-cleaning" class="level2">
 <h2 class="anchored" data-anchor-id="text-cleaning">Text Cleaning</h2>
 <p>The raw text contains punctuation, redundant whitespace, and occasionally malformed encoding. We apply basic cleaning to ensure the corpus is suitable for keyword extraction and topic modeling.</p>
-<div id="83658e0c" class="cell" data-execution_count="12">
+<div id="9c639d01" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
@@ -681,7 +681,7 @@ dtype: int64</code></pre>
 <section id="visualizing-high-frequency-terms" class="level2">
 <h2 class="anchored" data-anchor-id="visualizing-high-frequency-terms">Visualizing High-Frequency Terms</h2>
 <p>The following word cloud ord highlights the most common terms across all retrieved content, offering a visual snapshot of what matters most to the audience.</p>
-<div id="fbbca02e" class="cell" data-execution_count="13">
+<div id="4c628010" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> wordcloud <span class="im">import</span> WordCloud</span>
@@ -739,7 +739,7 @@ Insights from the Word Cloud
 </section>
 <section id="sentiment-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="sentiment-analysis"><strong>2.2 Sentiment Analysis</strong></h2>
-<div id="66c477e9" class="cell" data-execution_count="14">
+<div id="7ad69b15" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> snownlp <span class="im">import</span> SnowNLP</span>
@@ -786,7 +786,7 @@ Negative     5
 Name: count, dtype: int64</code></pre>
 </div>
 </div>
-<div id="c4fc5138" class="cell" data-execution_count="15">
+<div id="dd6e1c73" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -794,24 +794,39 @@ Name: count, dtype: int64</code></pre>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Count sentiment</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>sentiment_counts <span class="op">=</span> df[<span class="st">"sentiment_label"</span>].value_counts()</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置颜色和标签顺序</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Set labels and colors</span></span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> sentiment_counts.index.tolist()</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'green'</span> <span class="cf">if</span> label <span class="op">==</span> <span class="st">'Positive'</span> <span class="cf">else</span> <span class="st">'red'</span> <span class="cf">for</span> label <span class="kw">in</span> labels]</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#4CAF50'</span> <span class="cf">if</span> label <span class="op">==</span> <span class="st">'Positive'</span> <span class="cf">else</span> <span class="st">'#F44336'</span> <span class="cf">for</span> label <span class="kw">in</span> labels]  </span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">6</span>))</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>plt.pie(</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    sentiment_counts,</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span>labels,</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>,</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    startangle<span class="op">=</span><span class="dv">140</span>,</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    colors<span class="op">=</span>colors,</span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    textprops<span class="op">=</span>{<span class="st">'fontsize'</span>: <span class="dv">14</span>}</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Sentiment Composition"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'equal'</span>)  </span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Define explode to slightly offset each slice</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>explode <span class="op">=</span> [<span class="fl">0.05</span>] <span class="op">*</span> <span class="bu">len</span>(labels)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">7</span>), facecolor<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>wedges, texts, autotexts <span class="op">=</span> ax.pie(</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    sentiment_counts,</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span>labels,</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>,</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    startangle<span class="op">=</span><span class="dv">140</span>,</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    colors<span class="op">=</span>colors,</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    explode<span class="op">=</span>explode,</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    wedgeprops<span class="op">=</span>{<span class="st">'edgecolor'</span>: <span class="st">'white'</span>, <span class="st">'linewidth'</span>: <span class="dv">2</span>},</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    textprops<span class="op">=</span>{<span class="st">'fontsize'</span>: <span class="dv">13</span>}</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Labels and percentages</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> text <span class="kw">in</span> autotexts:</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    text.set_color(<span class="st">'white'</span>)</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    text.set_fontweight(<span class="st">'bold'</span>)</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Add title with padding</span></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Sentiment Composition"</span>, fontsize<span class="op">=</span><span class="dv">18</span>, weight<span class="op">=</span><span class="st">'bold'</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Equal aspect ratio ensures pie is circular</span></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">'equal'</span>)</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -840,12 +855,12 @@ Insights from Sentiment Analysis
 <p><strong>Conclusion</strong>: These findings suggest that while Singapore is generally viewed favorably, there remains a need to <strong>address misconceptions</strong> and <strong>reduce friction in communication</strong> when engaging with HNW prospects.</p>
 </div>
 </div>
-<div id="82d927de" class="cell" data-execution_count="16">
+<div id="cf6d818f" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> <span class="st">'Arial Unicode MS'</span>  <span class="co"># 更通用的中英混排字体</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> <span class="st">'Arial Unicode MS'</span>  </span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 分组：统计每个 keyword 下的正负面数量</span></span>
@@ -912,7 +927,7 @@ Next Step: Deep Dive into Negative Sentiments
 </section>
 <section id="network-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="network-analysis"><strong>2.3 Network Analysis</strong></h2>
-<div id="0afa694e" class="cell" data-execution_count="17">
+<div id="498bd858" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
@@ -932,7 +947,7 @@ Next Step: Deep Dive into Negative Sentiments
 <span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>            keyword_sentences.append(word_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="f799e916" class="cell" data-execution_count="18">
+<div id="6e1b57a7" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>top_100_words <span class="op">=</span> <span class="bu">set</span>(df_freq[<span class="st">"Word"</span>])</span>
@@ -945,7 +960,7 @@ Next Step: Deep Dive into Negative Sentiments
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>        co_occurrence[<span class="bu">tuple</span>(<span class="bu">sorted</span>(pair))] <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="02556444" class="cell" data-execution_count="19">
+<div id="3da88f30" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.font_manager <span class="im">as</span> fm</span>
@@ -954,37 +969,37 @@ Next Step: Deep Dive into Negative Sentiments
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(font)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>/System/Library/Fonts/Supplemental/Arial.ttf
-/System/Library/Fonts/ArialHB.ttc
-/System/Library/Fonts/Supplemental/Arial Bold.ttf
-/System/Library/Fonts/Supplemental/Arial Bold Italic.ttf
-/System/Library/Fonts/Supplemental/Arial Rounded Bold.ttf
-/Library/Fonts/Arial Unicode.ttf
-/System/Library/Fonts/Supplemental/Arial Unicode.ttf
-/System/Library/Fonts/PingFang.ttc
-/System/Library/Fonts/STHeiti Medium.ttc
-/System/Library/Fonts/Supplemental/Arial Black.ttf
-/System/Library/Fonts/Supplemental/Arial Narrow Bold Italic.ttf
-/System/Library/Fonts/Supplemental/Arial Narrow Bold.ttf
-/System/Library/Fonts/STHeiti Light.ttc
+<pre><code>/Library/Fonts/Arial Unicode.ttf
 /System/Library/Fonts/Supplemental/Arial Narrow.ttf
+/System/Library/Fonts/Supplemental/Arial.ttf
+/System/Library/Fonts/Supplemental/Arial Narrow Bold.ttf
+/System/Library/Fonts/Supplemental/Arial Italic.ttf
+/System/Library/Fonts/STHeiti Medium.ttc
+/System/Library/Fonts/PingFang.ttc
+/System/Library/Fonts/Supplemental/Arial Black.ttf
+/System/Library/Fonts/Supplemental/Arial Rounded Bold.ttf
+/System/Library/Fonts/Supplemental/Arial Bold Italic.ttf
+/System/Library/Fonts/Supplemental/Arial Unicode.ttf
 /System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf
-/System/Library/Fonts/Supplemental/Arial Italic.ttf</code></pre>
+/System/Library/Fonts/STHeiti Light.ttc
+/System/Library/Fonts/Supplemental/Arial Bold.ttf
+/System/Library/Fonts/ArialHB.ttc
+/System/Library/Fonts/Supplemental/Arial Narrow Bold Italic.ttf</code></pre>
 </div>
 </div>
-<div id="7ed61b42" class="cell" data-execution_count="20">
+<div id="ff8f0f51" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.font_manager <span class="im">as</span> fm</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 手动设置中文字体（可替换为你机器已有的其他中文字体路径）</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 手动设置中文字体</span></span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>my_font <span class="op">=</span> fm.FontProperties(fname<span class="op">=</span><span class="st">"/System/Library/Fonts/STHeiti Medium.ttc"</span>)</span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> my_font.get_name()</span>
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 构建图（你需要已经准备好 co_occurrence 字典）</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 构建图</span></span>
 <span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span>
 <span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (w1, w2), freq <span class="kw">in</span> co_occurrence.items():</span>
 <span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> freq <span class="op">&gt;=</span> <span class="dv">3</span>:  <span class="co"># 设定共现阈值</span></span>
@@ -1029,7 +1044,7 @@ Insights from Co-occurrence Keyword Network
 <p><strong>Conclusion</strong>: These patterns demonstrate that Chinese HNWIs approach offshore wealth management as a <strong>multifaceted decision process</strong>. Singapore is appealing not for a single advantage, but for its ability to address <strong>multiple interconnected concerns</strong> simultaneously.</p>
 </div>
 </div>
-<div id="4b63b7b6" class="cell" data-execution_count="21">
+<div id="36ca0631" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算节点的度中心性</span></span>
@@ -1051,13 +1066,13 @@ Insights from Co-occurrence Keyword Network
 公司: 1.000
 管理: 0.980
 净值: 0.970
-香港: 0.970
 中国: 0.970
+香港: 0.970
 进行: 0.970
-银行: 0.960</code></pre>
+财富: 0.960</code></pre>
 </div>
 </div>
-<div id="fbdbd875" class="cell" data-execution_count="22">
+<div id="560ee98c" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Click to view code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> community <span class="im">as</span> community_louvain  <span class="co"># pip install python-louvain</span></span>
